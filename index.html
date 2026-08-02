@@ -1,0 +1,1791 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Türkiye'nin En İyi 100 Lojistik Firması — Öğrenci Rehberi</title>
+<style>
+  :root{
+    --ink:#0e1b2c;
+    --port-blue:#12324f;
+    --deep-navy:#0a1826;
+    --steel:#3d5871;
+    --paper:#f4f1e8;
+    --paper-2:#eee9db;
+    --amber:#e08a1e;
+    --amber-deep:#b56a10;
+    --container-green:#2f6a52;
+    --line:#d8d1bd;
+    --white:#fffdf8;
+    --shadow: 0 8px 24px rgba(10,24,38,0.12);
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family: 'Iowan Old Style','Georgia','Times New Roman',serif;
+    line-height:1.55;
+  }
+  .mono, .tag, .col-id, .kv, th, .stat-num, .toc-num, .badge{
+    font-family: 'JetBrains Mono','SFMono-Regular','Consolas',monospace;
+  }
+  ::selection{background:var(--amber); color:var(--white);}
+
+  /* ---------- Nav ---------- */
+  .topnav{
+    position:sticky; top:0; z-index:50;
+    background:var(--deep-navy);
+    border-bottom:2px solid var(--amber);
+    display:flex; align-items:center; justify-content:space-between;
+    padding:10px 24px;
+    color:var(--paper);
+  }
+  .topnav .brand{
+    font-family:'JetBrains Mono',monospace;
+    font-size:12px; letter-spacing:.12em; text-transform:uppercase;
+    color:var(--amber);
+  }
+  .topnav .links{display:flex; gap:18px; flex-wrap:wrap;}
+  .topnav a{
+    color:var(--paper); text-decoration:none; font-size:13px;
+    font-family:'JetBrains Mono',monospace; letter-spacing:.03em;
+    border-bottom:1px solid transparent; padding-bottom:2px;
+  }
+  .topnav a:hover{border-bottom-color:var(--amber); color:var(--amber);}
+
+  /* ---------- Hero (cover) ---------- */
+  .hero{
+    position:relative;
+    background:
+      radial-gradient(circle at 85% 15%, rgba(224,138,30,0.18), transparent 45%),
+      linear-gradient(180deg, var(--deep-navy) 0%, var(--port-blue) 100%);
+    color:var(--paper);
+    padding:90px 24px 70px;
+    overflow:hidden;
+  }
+  .hero::before{
+    /* container-stack motif */
+    content:"";
+    position:absolute; right:-40px; top:-40px; bottom:-40px; width:280px;
+    background-image:
+      repeating-linear-gradient(0deg, rgba(255,255,255,0.05) 0 46px, transparent 46px 52px),
+      repeating-linear-gradient(90deg, rgba(255,255,255,0.05) 0 90px, transparent 90px 96px);
+    opacity:.5;
+    pointer-events:none;
+  }
+  .hero-inner{max-width:980px; margin:0 auto; position:relative;}
+  .eyebrow{
+    font-family:'JetBrains Mono',monospace;
+    font-size:12px; letter-spacing:.22em; text-transform:uppercase;
+    color:var(--amber); margin-bottom:18px; display:flex; align-items:center; gap:10px;
+  }
+  .eyebrow::before{content:"◆"; font-size:10px;}
+  h1.title{
+    font-size:clamp(34px,5.4vw,58px);
+    line-height:1.05; margin:0 0 18px; font-weight:700;
+    letter-spacing:-0.01em;
+  }
+  h1.title .accent{color:var(--amber); font-style:italic;}
+  .subtitle{
+    font-size:18px; color:#cdd8e2; max-width:640px; margin:0 0 36px;
+    font-family:'Iowan Old Style',Georgia,serif;
+  }
+  .hero-stats{display:flex; gap:0; flex-wrap:wrap; border-top:1px solid rgba(255,255,255,0.18);}
+  .hstat{
+    padding:20px 28px 0 0; margin-right:28px; border-right:1px solid rgba(255,255,255,0.18);
+    min-width:120px;
+  }
+  .hstat:last-child{border-right:none;}
+  .hstat .stat-num{font-size:30px; color:var(--amber); font-weight:700; display:block;}
+  .hstat .stat-label{font-size:12px; color:#aebdcb; text-transform:uppercase; letter-spacing:.08em;}
+
+  /* ---------- Layout ---------- */
+  main{max-width:1180px; margin:0 auto; padding:0 24px;}
+  section{padding:64px 0;}
+  section + section{border-top:1px solid var(--line);}
+  .section-head{margin-bottom:32px; max-width:760px;}
+  .section-kicker{
+    font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:.16em;
+    text-transform:uppercase; color:var(--amber-deep); margin-bottom:10px;
+  }
+  h2.section-title{
+    font-size:clamp(26px,3.4vw,38px); margin:0 0 12px; color:var(--deep-navy);
+    letter-spacing:-.01em;
+  }
+  .section-desc{color:var(--steel); font-size:16px; max-width:680px;}
+
+  /* ---------- TOC ---------- */
+  .toc-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:14px;}
+  .toc-card{
+    background:var(--white); border:1px solid var(--line); border-radius:2px;
+    padding:20px; text-decoration:none; color:var(--ink); display:block;
+    transition:transform .15s ease, box-shadow .15s ease, border-color .15s ease;
+    position:relative; overflow:hidden;
+  }
+  .toc-card:hover{transform:translateY(-3px); box-shadow:var(--shadow); border-color:var(--amber);}
+  .toc-num{font-size:12px; color:var(--amber-deep); margin-bottom:8px;}
+  .toc-card h3{margin:0 0 6px; font-size:18px;}
+  .toc-card p{margin:0; font-size:13px; color:var(--steel); font-family:'Iowan Old Style',Georgia,serif;}
+
+  /* ---------- Filters / Firma table ---------- */
+  .filter-bar{
+    display:flex; gap:12px; flex-wrap:wrap; align-items:center;
+    background:var(--white); border:1px solid var(--line);
+    padding:16px; margin-bottom:20px; position:sticky; top:47px; z-index:20;
+    box-shadow:var(--shadow);
+  }
+  .filter-bar input[type=text]{
+    flex:1; min-width:200px; padding:10px 14px; border:1px solid var(--line);
+    font-family:'JetBrains Mono',monospace; font-size:13px; background:var(--paper);
+    color:var(--ink); border-radius:2px;
+  }
+  .filter-bar select{
+    padding:10px 12px; border:1px solid var(--line); font-family:'JetBrains Mono',monospace;
+    font-size:13px; background:var(--paper); color:var(--ink); border-radius:2px;
+  }
+  .filter-count{
+    font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--steel);
+    white-space:nowrap;
+  }
+  .filter-count b{color:var(--amber-deep);}
+
+  .table-scroll{overflow-x:auto; border:1px solid var(--line); background:var(--white);}
+  table.firma-table{border-collapse:collapse; width:100%; min-width:1200px; font-size:13.5px;}
+  table.firma-table thead th{
+    background:var(--deep-navy); color:var(--paper); text-align:left;
+    padding:12px 12px; font-family:'JetBrains Mono',monospace; font-size:11px;
+    letter-spacing:.05em; text-transform:uppercase; position:sticky; top:95px; z-index:10;
+    white-space:nowrap;
+  }
+  table.firma-table td{
+    padding:11px 12px; border-bottom:1px solid var(--line); vertical-align:top;
+  }
+  table.firma-table tbody tr:nth-child(even){background:var(--paper-2);}
+  table.firma-table tbody tr:hover{background:#fbeed9;}
+  .col-id{font-family:'JetBrains Mono',monospace; color:var(--steel); width:36px;}
+  .col-name{min-width:170px;}
+  .col-services{min-width:260px; color:var(--steel);}
+  .col-notes{min-width:260px; color:var(--steel); font-size:13px;}
+  table.firma-table a{color:var(--amber-deep); text-decoration:none; border-bottom:1px dotted var(--amber-deep);}
+  table.firma-table a:hover{color:var(--container-green);}
+
+  .tag{
+    display:inline-block; padding:3px 9px; border-radius:20px; font-size:11px;
+    font-family:'JetBrains Mono',monospace; letter-spacing:.02em;
+  }
+  .tag-tr{background:#e3efe8; color:var(--container-green); border:1px solid #b9d8c6;}
+  .tag-global{background:#fdecd6; color:var(--amber-deep); border:1px solid #f2cd97;}
+
+  /* ---------- Kategoriler / Rehber shared tables ---------- */
+  h3.kat-section, h3.reh-section{
+    font-size:15px; text-transform:uppercase; letter-spacing:.1em; color:var(--amber-deep);
+    margin:38px 0 14px; padding-bottom:8px; border-bottom:2px solid var(--ink);
+    font-family:'JetBrains Mono',monospace;
+  }
+  h3.kat-section:first-of-type, h3.reh-section:first-of-type{margin-top:0;}
+  p.reh-intro-title{
+    font-size:22px; font-weight:700; color:var(--deep-navy); margin:0 0 6px;
+  }
+  p.reh-intro-sub{color:var(--steel); margin:0 0 30px; font-style:italic;}
+  p.reh-outro{
+    margin-top:36px; padding:18px 20px; background:var(--deep-navy); color:var(--paper);
+    border-left:4px solid var(--amber); font-size:16px;
+  }
+  .table-wrap{overflow-x:auto; margin-bottom:8px;}
+  table.kat-table, table.reh-table{
+    border-collapse:collapse; width:100%; background:var(--white); font-size:14px;
+  }
+  table.kat-table th, table.reh-table th{
+    text-align:left; padding:10px 14px; background:var(--paper-2); color:var(--ink);
+    font-family:'JetBrains Mono',monospace; font-size:11px; text-transform:uppercase;
+    letter-spacing:.05em; border-bottom:2px solid var(--ink);
+  }
+  table.kat-table td, table.reh-table td{
+    padding:12px 14px; border-bottom:1px solid var(--line); vertical-align:top;
+  }
+  table.kat-table td:first-child, table.reh-table td:first-child{
+    font-weight:700; color:var(--port-blue); white-space:nowrap;
+  }
+  table.kat-table tbody tr:hover, table.reh-table tbody tr:hover{background:#fbeed9;}
+
+  /* ---------- About / intro block ---------- */
+  .about-box{
+    background:var(--white); border:1px solid var(--line); padding:28px;
+    border-left:4px solid var(--amber); font-size:16px; color:var(--ink);
+  }
+
+  /* ---------- Footer ---------- */
+  footer{
+    background:var(--deep-navy); color:#9fb0c0; padding:36px 24px; text-align:center;
+    font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:.04em;
+  }
+  footer .amber{color:var(--amber);}
+
+  /* ---------- Back to top ---------- */
+  #backtotop{
+    position:fixed; right:20px; bottom:20px; background:var(--amber); color:var(--deep-navy);
+    border:none; width:44px; height:44px; border-radius:50%; font-size:18px; cursor:pointer;
+    box-shadow:var(--shadow); display:none; z-index:60;
+  }
+  #backtotop:hover{background:var(--amber-deep); color:var(--paper);}
+
+  @media (max-width:640px){
+    .topnav .links{display:none;}
+    .hero{padding:70px 18px 50px;}
+    section{padding:44px 0;}
+    .filter-bar{position:static;}
+    table.firma-table thead th{position:static;}
+  }
+</style>
+</head>
+<body>
+
+<nav class="topnav">
+  <span class="brand">LOJİSTİK REHBERİ · 2025</span>
+  <div class="links">
+    <a href="#firmalar">Firma Listesi</a>
+    <a href="#kategoriler">Kategoriler</a>
+    <a href="#rehber">Öğrenci Rehberi</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">Lojistik Öğrencileri için Kapsamlı Rehber</div>
+    <h1 class="title">Türkiye'nin <span class="accent">En İyi 100</span><br>Lojistik Firması</h1>
+    <p class="subtitle">Kuruluş yılından global ağa, staj fırsatlarından web sitesine kadar; Türkiye'de faaliyet gösteren en güçlü 100 lojistik firmasının tam profili — kariyer planlaması yapan öğrenciler için tek kaynak.</p>
+    <div class="hero-stats">
+      <div class="hstat"><span class="stat-num">100</span><span class="stat-label">Firma</span></div>
+      <div class="hstat"><span class="stat-num">75</span><span class="stat-label">Türk Firma</span></div>
+      <div class="hstat"><span class="stat-num">25</span><span class="stat-label">Global Firma</span></div>
+      <div class="hstat"><span class="stat-num">9</span><span class="stat-label">Hizmet Kategorisi</span></div>
+    </div>
+  </div>
+</header>
+
+<main>
+
+  <section id="icindekiler">
+    <div class="section-head">
+      <div class="section-kicker">Başlarken</div>
+      <h2 class="section-title">Bu Rehber Nedir?</h2>
+    </div>
+    <div class="about-box">
+      Bu belge, Türkiye'de faaliyet gösteren ve global güce sahip 100 lojistik firmasının detaylı bilgilerini içerir. Öğrenciler için hazırlanmıştır; firma seçimi, staj başvurusu, iş arama ve sektör araştırması gibi konularda kılavuz niteliğindedir. Her firma için kuruluş yılı, merkez, hizmet türleri, çalışan sayısı, global ağ, web sitesi, çalışma alanları ve öğrenci fırsatları hakkında bilgi sunulmaktadır.
+    </div>
+    <div class="toc-grid" style="margin-top:28px;">
+      <a class="toc-card" href="#firmalar">
+        <div class="toc-num">01 / Detaylı Tablo</div>
+        <h3>Firma Listesi</h3>
+        <p>Arayarak ve filtreleyerek incelenebilen 100 firmanın tam profili.</p>
+      </a>
+      <a class="toc-card" href="#kategoriler">
+        <div class="toc-num">02 / Sınıflandırma</div>
+        <h3>Kategoriler</h3>
+        <p>Menşe, hizmet türü ve ölçek bazında firma gruplandırmaları.</p>
+      </a>
+      <a class="toc-card" href="#rehber">
+        <div class="toc-num">03 / Kariyer</div>
+        <h3>Öğrenci Rehberi</h3>
+        <p>Firma seçimi, staj başvurusu ve mülakat hazırlığı için ipuçları.</p>
+      </a>
+    </div>
+  </section>
+
+  <section id="firmalar">
+    <div class="section-head">
+      <div class="section-kicker">01 — Detaylı Bilgi Tablosu</div>
+      <h2 class="section-title">100 Firmanın Tam Profili</h2>
+      <p class="section-desc">İsme, menşeye veya hizmet alanına göre arama yapın. Tüm sütunlar yatay kaydırma ile görüntülenebilir.</p>
+    </div>
+
+    <div class="filter-bar">
+      <input type="text" id="searchInput" placeholder="Firma adı, hizmet, mod ara… (örn: soğuk zincir, deniz)">
+      <select id="originFilter">
+        <option value="">Tüm Menşeler</option>
+        <option value="türkiye">Türkiye</option>
+        <option value="global">Global</option>
+      </select>
+      <span class="filter-count"><b id="resultCount">100</b> / 100 firma gösteriliyor</span>
+    </div>
+
+    <div class="table-scroll">
+      <table class="firma-table" id="firmaTable">
+        <thead>
+          <tr>
+            <th>#</th><th>Firma Adı</th><th>Menşe</th><th>Kuruluş</th><th>Merkez</th>
+            <th>Hizmet Alanları</th><th>Taşımacılık Modu</th><th>Çalışan</th>
+            <th>Global Ağ</th><th>Ciro / Büyüklük</th><th>Web Sitesi</th><th>Öğrenci Fırsatları / Notlar</th>
+          </tr>
+        </thead>
+        <tbody id="firmaTbody">
+          
+    <tr class="firma-row" data-name="netlog lojistik" data-origin="türkiye" data-services="karayolu, denizyolu, havayolu taşımacılığı, depolama, dağıtım, soğuk zincir, e-ticaret" data-mode="karayolu / deniz / hava / demir">
+      <td class="col-id">1</td>
+      <td class="col-name"><strong>Netlog Lojistik</strong></td>
+      <td><span class="tag tag-tr">Türkiye</span></td>
+      <td>1993</td>
+      <td>İstanbul</td>
+      <td class="col-services">Karayolu, denizyolu, havayolu taşımacılığı, depolama, dağıtım, soğuk zincir, e-ticaret</td>
+      <td>Karayolu / Deniz / Hava / Demir</td>
+      <td>5.000+</td>
+      <td>30+ ülke</td>
+      <td>₺35+ milyar (2023)</td>
+      <td><a href="https://www.netloglojistik.com" target="_blank" rel="noopener">netloglojistik.com</a></td>
+      <td class="col-notes">Türkiye&#x27;nin en büyük lojistik firması. Staj programı ve genç yetenek programı mevcut.</td>
+    </tr>
+    <tr class="firma-row" data-name="ekol lojistik" data-origin="türkiye" data-services="intermodal, karayolu, denizyolu, depolama, gümrük, tedarik zinciri, otomotiv lojistiği" data-mode="intermodal / kara / deniz / hava">
+      <td class="col-id">2</td>
+      <td class="col-name"><strong>Ekol Lojistik</strong></td>
+      <td><span class="tag tag-tr">Türkiye</span></td>
+      <td>1990</td>
+      <td>İstanbul</td>
+      <td class="col-services">Intermodal, karayolu, denizyolu, depolama, gümrük, tedarik zinciri, otomotiv lojistiği</td>
+      <td>Intermodal / Kara / Deniz / Hava</td>
+      <td>7.500+</td>
+      <td>17 ülke, 30+ ofis</td>
+      <td>₺12+ milyar (2023)</td>
+      <td><a href="https://www.ekol.com" target="_blank" rel="noopener">ekol.com</a></td>
+      <td class="col-notes">Avrupa&#x27;da güçlü ağ. &quot;Ekol Akademi&quot; ve stajyer programı ile öğrenci dostu.</td>
+    </tr>
+    <tr class="firma-row" data-name="borusan lojistik" data-origin="türkiye" data-services="liman işletmeciliği, karayolu, denizyolu, depolama, dijital lojistik, proje lojistiği" data-mode="kara / deniz / liman">
+      <td class="col-id">3</td>
+      <td class="col-name"><strong>Borusan Lojistik</strong></td>
+      <td><span class="tag tag-tr">Türkiye</span></td>
+      <td>1973</td>
+      <td>İstanbul</td>
+      <td class="col-services">Liman işletmeciliği, karayolu, denizyolu, depolama, dijital lojistik, proje lojistiği</td>
+      <td>Kara / Deniz / Liman</td>
+      <td>3.500+</td>
+      <td>15+ ülke</td>
+      <td>₺11+ milyar (2023)</td>
+      <td><a href="https://www.borusanlojistik.com" target="_blank" rel="noopener">borusanlojistik.com</a></td>
+      <td class="col-notes">Borusan Grubu iştiraki. &quot;eLojistik&quot; dijital platform. Yönetici adayı programı var.</td>
+    </tr>
+    <tr class="firma-row" data-name="mars lojistik" data-origin="türkiye" data-services="karayolu, havayolu, denizyolu, gümrük, depolama, uluslararası taşımacılık, fuar lojistiği" data-mode="kara / hava / deniz">
+      <td class="col-id">4</td>
+      <td class="col-name"><strong>Mars Lojistik</strong></td>
+      <td><span class="tag tag-tr">Türkiye</span></td>
+      <td>1989</td>
+      <td>İstanbul</td>
+      <td class="col-services">Karayolu, havayolu, denizyolu, gümrük, depolama, uluslararası taşımacılık, fuar lojistiği</td>
+      <td>Kara / Hava / Deniz</td>
+      <td>2.500+</td>
+      <td>25+ ülke, 60+ ofis</td>
+      <td>₺13,6+ milyar (2023)</td>
+      <td><a href="https://www.marslogistics.com" target="_blank" rel="noopener">marslogistics.com</a></td>
+      <td class="col-notes">Fuar lojistiğinde lider. Global ağ ile staj imkanları sunar.</td>
+    </tr>
+    <tr class="firma-row" data-name="omsan lojistik" data-origin="türkiye" data-services="karayolu taşımacılığı, depolama, dağıtım, otomotiv lojistiği, kimya lojistiği" data-mode="karayolu / demir">
+      <td class="col-id">5</td>
+      <td class="col-name"><strong>Omsan Lojistik</strong></td>
+      <td><span class="tag tag-tr">Türkiye</span></td>
+      <td>1978</td>
+      <td>İstanbul</td>
+      <td class="col-services">Karayolu taşımacılığı, depolama, dağıtım, otomotiv lojistiği, kimya lojistiği</td>
+      <td>Karayolu / Demir</td>
+      <td>3.000+</td>
+      <td>40+ ülke</td>
+      <td>₺8+ milyar (2023)</td>
+      <td><a href="https://www.omsan.com.tr" target="_blank" rel="noopener">omsan.com.tr</a></td>
+      <td class="col-notes">OYAK Grubu iştiraki. Otomotiv sektörü lojistiğinde uzman.</td>
+    </tr>
+    <tr class="firma-row" data-name="horoz lojistik" data-origin="türkiye" data-services="yurtiçi dağıtım, depolama, e-ticaret lojistiği, soğuk zincir, aktarma" data-mode="karayolu">
+      <td class="col-id">6</td>
+      <td class="col-name"><strong>Horoz Lojistik</strong></td>
+      <td><span class="tag tag-tr">Türkiye</span></td>
+      <td>1942</td>
+      <td>İstanbul</td>
+      <td class="col-services">Yurtiçi dağıtım, depolama, e-ticaret lojistiği, soğuk zincir, aktarma</td>
+      <td>Karayolu</td>
+      <td>3.500+</td>
+      <td>Türkiye geneli + Avrupa</td>
+      <td>₺5+ milyar (2023)</td>
+      <td><a href="https://www.horoz.com.tr" target="_blank" rel="noopener">horoz.com.tr</a></td>
+      <td class="col-notes">80+ yıllık geçmiş. 50.000 sipariş/gün e-ticaret deposu. Staj programı aktif.</td>
+    </tr>
+    <tr class="firma-row" data-name="arkas lojistik" data-origin="türkiye" data-services="konteyner taşımacılığı, denizyolu, havayolu, gümrük, depolama, proje lojistiği" data-mode="deniz / kara / hava">
+      <td class="col-id">7</td>
+      <td class="col-name"><strong>Arkas Lojistik</strong></td>
+      <td><span class="tag tag-tr">Türkiye</span></td>
+      <td>1902 (Grup)</td>
+      <td>İzmir</td>
+      <td class="col-services">Konteyner taşımacılığı, denizyolu, havayolu, gümrük, depolama, proje lojistiği</td>
+      <td>Deniz / Kara / Hava</td>
+      <td>6.000+ (Grup)</td>
+      <td>22 ülke, 60+ ofis</td>
+      <td>₺15+ milyar (Grup)</td>
+      <td><a href="https://www.arkaslojistik.com.tr" target="_blank" rel="noopener">arkaslojistik.com.tr</a></td>
+      <td class="col-notes">Arkas Holding iştiraki. Denizyolu ve konteynerde Türkiye lideri.</td>
+    </tr>
+    <tr class="firma-row" data-name="barsan global lojistik" data-origin="türkiye" data-services="havayolu, denizyolu, karayolu, demiryolu, gümrükleme, intermodal, proje" data-mode="multimodal">
+      <td class="col-id">8</td>
+      <td class="col-name"><strong>Barsan Global Lojistik</strong></td>
+      <td><span class="tag tag-tr">Türkiye</span></td>
+      <td>1982</td>
+      <td>İstanbul</td>
+      <td class="col-services">Havayolu, denizyolu, karayolu, demiryolu, gümrükleme, intermodal, proje</td>
+      <td>Multimodal</td>
+      <td>2.500+</td>
+      <td>65 ülke, 130+ ofis</td>
+      <td>₺7+ milyar (2023)</td>
+      <td><a href="https://www.barsan.com" target="_blank" rel="noopener">barsan.com</a></td>
+      <td class="col-notes">Global ağı en geniş Türk firmalarından. 40+ yıl deneyim.</td>
+    </tr>
+    <tr class="firma-row" data-name="reysaş lojistik" data-origin="türkiye" data-services="depolama, dağıtım, taşımacılık, oto lojistik, gyo (gayrimenkul yatırım)" data-mode="karayolu / depo">
+      <td class="col-id">9</td>
+      <td class="col-name"><strong>Reysaş Lojistik</strong></td>
+      <td><span class="tag tag-tr">Türkiye</span></td>
+      <td>1990</td>
+      <td>İstanbul</td>
+      <td class="col-services">Depolama, dağıtım, taşımacılık, oto lojistik, GYO (gayrimenkul yatırım)</td>
+      <td>Karayolu / Depo</td>
+      <td>2.000+</td>
+      <td>Türkiye + bölge</td>
+      <td>₺4+ milyar (2023)</td>
+      <td><a href="https://www.reysas.com" target="_blank" rel="noopener">reysas.com</a></td>
+      <td class="col-notes">Halka açık firma (BIST). Depoculukta lider konumda.</td>
+    </tr>
+    <tr class="firma-row" data-name="alışan lojistik" data-origin="türkiye" data-services="kimya, tehlikeli madde, tank taşımacılığı, depolama, adr lojistiği" data-mode="karayolu / deniz">
+      <td class="col-id">10</td>
+      <td class="col-name"><strong>Alışan Lojistik</strong></td>
+      <td><span class="tag tag-tr">Türkiye</span></td>
+      <td>1986</td>
+      <td>Kocaeli</td>
+      <td class="col-services">Kimya, tehlikeli madde, tank taşımacılığı, depolama, ADR lojistiği</td>
+      <td>Karayolu / Deniz</td>
+      <td>1.500+</td>
+      <td>Avrupa geneli</td>
+      <td>₺3+ milyar</td>
+      <td><a href="https://www.alisan.com.tr" target="_blank" rel="noopener">alisan.com.tr</a></td>
+      <td class="col-notes">Kimyasal ve tehlikeli madde lojistiğinde uzman. ADR eğitimleri düzenler.</td>
+    </tr>
+    <tr class="firma-row" data-name="sertrans logistics" data-origin="türkiye" data-services="karayolu, denizyolu, havayolu, depolama, gümrük, entegre lojistik" data-mode="multimodal">
+      <td class="col-id">11</td>
+      <td class="col-name"><strong>Sertrans Logistics</strong></td>
+      <td><span class="tag tag-tr">Türkiye</span></td>
+      <td>1998</td>
+      <td>İstanbul</td>
+      <td class="col-services">Karayolu, denizyolu, havayolu, depolama, gümrük, entegre lojistik</td>
+      <td>Multimodal</td>
+      <td>1.200+</td>
+      <td>Avrupa &amp; Ortadoğu</td>
+      <td>₺2,5+ milyar</td>
+      <td><a href="https://www.sertrans.com.tr" target="_blank" rel="noopener">sertrans.com.tr</a></td>
+      <td class="col-notes">Hızlı büyüyen firma. Dijital lojistik yatırımları.</td>
+    </tr>
+    <tr class="firma-row" data-name="ceva lojistik türkiye" data-origin="global (fransa)" data-services="kontrat lojistiği, freight forwarding, e-ticaret, otomotiv, tedarik zinciri" data-mode="multimodal">
+      <td class="col-id">12</td>
+      <td class="col-name"><strong>Ceva Lojistik Türkiye</strong></td>
+      <td><span class="tag tag-global">Global (Fransa)</span></td>
+      <td>2007 (TR)</td>
+      <td>İstanbul</td>
+      <td class="col-services">Kontrat lojistiği, freight forwarding, e-ticaret, otomotiv, tedarik zinciri</td>
+      <td>Multimodal</td>
+      <td>110.000+ (Global)</td>
+      <td>170+ ülke</td>
+      <td>€18,7 milyar (2023)</td>
+      <td><a href="https://www.cevalogistics.com" target="_blank" rel="noopener">cevalogistics.com</a></td>
+      <td class="col-notes">CMA CGM Grubu. Global 3PL devi, Türkiye&#x27;de güçlü büyüme.</td>
+    </tr>
+    <tr class="firma-row" data-name="dhl türkiye" data-origin="global (almanya)" data-services="ekspres, freight forwarding, tedarik zinciri, e-ticaret" data-mode="hava / kara / deniz">
+      <td class="col-id">13</td>
+      <td class="col-name"><strong>DHL Türkiye</strong></td>
+      <td><span class="tag tag-global">Global (Almanya)</span></td>
+      <td>1988 (TR)</td>
+      <td>İstanbul</td>
+      <td class="col-services">Ekspres, freight forwarding, tedarik zinciri, e-ticaret</td>
+      <td>Hava / Kara / Deniz</td>
+      <td>594.000+ (Global)</td>
+      <td>220+ ülke</td>
+      <td>€81,8 milyar (2023)</td>
+      <td><a href="https://www.dhl.com/tr-tr" target="_blank" rel="noopener">dhl.com/tr-tr</a></td>
+      <td class="col-notes">Dünya lideri. Global staj/graduate programları (GET / Certified Intern).</td>
+    </tr>
+    <tr class="firma-row" data-name="kuehne + nagel türkiye" data-origin="global (i̇sviçre)" data-services="denizyolu, havayolu, karayolu, kontrat lojistiği" data-mode="multimodal">
+      <td class="col-id">14</td>
+      <td class="col-name"><strong>Kuehne + Nagel Türkiye</strong></td>
+      <td><span class="tag tag-global">Global (İsviçre)</span></td>
+      <td>1992 (TR)</td>
+      <td>İstanbul</td>
+      <td class="col-services">Denizyolu, havayolu, karayolu, kontrat lojistiği</td>
+      <td>Multimodal</td>
+      <td>79.000+ (Global)</td>
+      <td>100+ ülke</td>
+      <td>CHF 24,5 milyar (2023)</td>
+      <td><a href="https://tr.kuehne-nagel.com" target="_blank" rel="noopener">tr.kuehne-nagel.com</a></td>
+      <td class="col-notes">Denizyolu ve havayolu freight forwarding&#x27;de dünya lideri.</td>
+    </tr>
+    <tr class="firma-row" data-name="dsv türkiye" data-origin="global (danimarka)" data-services="havayolu, denizyolu, karayolu, solution (kontrat lojistiği)" data-mode="multimodal">
+      <td class="col-id">15</td>
+      <td class="col-name"><strong>DSV Türkiye</strong></td>
+      <td><span class="tag tag-global">Global (Danimarka)</span></td>
+      <td>2003 (TR)</td>
+      <td>İstanbul</td>
+      <td class="col-services">Havayolu, denizyolu, karayolu, solution (kontrat lojistiği)</td>
+      <td>Multimodal</td>
+      <td>160.000+ (Schenker sonrası)</td>
+      <td>90+ ülke</td>
+      <td>DKK 150+ milyar</td>
+      <td><a href="https://www.dsv.com/en/countries/turkiye" target="_blank" rel="noopener">dsv.com/en/countries/turkiye</a></td>
+      <td class="col-notes">DB Schenker&#x27;i satın aldı, dünyanın en büyük freight forwarder&#x27;ı.</td>
+    </tr>
+    <tr class="firma-row" data-name="db schenker türkiye" data-origin="global (almanya)" data-services="kara, hava, deniz, sözleşme lojistiği, fuar lojistiği" data-mode="multimodal">
+      <td class="col-id">16</td>
+      <td class="col-name"><strong>DB Schenker Türkiye</strong></td>
+      <td><span class="tag tag-global">Global (Almanya)</span></td>
+      <td>1990 (TR)</td>
+      <td>İstanbul</td>
+      <td class="col-services">Kara, hava, deniz, sözleşme lojistiği, fuar lojistiği</td>
+      <td>Multimodal</td>
+      <td>76.000+</td>
+      <td>130+ ülke</td>
+      <td>€19,1 milyar (2023)</td>
+      <td><a href="https://www.dbschenker.com/tr-tr" target="_blank" rel="noopener">dbschenker.com/tr-tr</a></td>
+      <td class="col-notes">2025&#x27;te DSV&#x27;ye satıldı. Sözleşme lojistiğinde güçlü.</td>
+    </tr>
+    <tr class="firma-row" data-name="fedex türkiye" data-origin="global (abd)" data-services="ekspres, karayolu, freight, e-ticaret" data-mode="hava / kara">
+      <td class="col-id">17</td>
+      <td class="col-name"><strong>FedEx Türkiye</strong></td>
+      <td><span class="tag tag-global">Global (ABD)</span></td>
+      <td>2011 (TR)</td>
+      <td>İstanbul</td>
+      <td class="col-services">Ekspres, karayolu, freight, e-ticaret</td>
+      <td>Hava / Kara</td>
+      <td>500.000+</td>
+      <td>220+ ülke</td>
+      <td>$87,7 milyar (2024)</td>
+      <td><a href="https://www.fedex.com/tr-tr" target="_blank" rel="noopener">fedex.com/tr-tr</a></td>
+      <td class="col-notes">Global ekspres devi. Genç yetenek programı sunar.</td>
+    </tr>
+    <tr class="firma-row" data-name="ups türkiye" data-origin="global (abd)" data-services="ekspres, kargo, freight, tedarik zinciri" data-mode="hava / kara">
+      <td class="col-id">18</td>
+      <td class="col-name"><strong>UPS Türkiye</strong></td>
+      <td><span class="tag tag-global">Global (ABD)</span></td>
+      <td>1988 (TR)</td>
+      <td>İstanbul</td>
+      <td class="col-services">Ekspres, kargo, freight, tedarik zinciri</td>
+      <td>Hava / Kara</td>
+      <td>500.000+</td>
+      <td>220+ ülke</td>
+      <td>$91 milyar (2023)</td>
+      <td><a href="https://www.ups.com/tr" target="_blank" rel="noopener">ups.com/tr</a></td>
+      <td class="col-notes">Küresel paket taşıma lideri. Türkiye&#x27;de geniş dağıtım ağı.</td>
+    </tr>
+    <tr class="firma-row" data-name="maersk türkiye" data-origin="global (danimarka)" data-services="konteyner denizyolu, liman, entegre lojistik, depolama" data-mode="deniz / kara / hava">
+      <td class="col-id">19</td>
+      <td class="col-name"><strong>Maersk Türkiye</strong></td>
+      <td><span class="tag tag-global">Global (Danimarka)</span></td>
+      <td>(TR ofis)</td>
+      <td>İstanbul</td>
+      <td class="col-services">Konteyner denizyolu, liman, entegre lojistik, depolama</td>
+      <td>Deniz / Kara / Hava</td>
+      <td>100.000+</td>
+      <td>130+ ülke</td>
+      <td>$51,1 milyar (2023)</td>
+      <td><a href="https://www.maersk.com/local-information/europe/turkey" target="_blank" rel="noopener">maersk.com/local-information/europe/turkey</a></td>
+      <td class="col-notes">Konteyner denizyolunda dünya lideri. End-to-end lojistik.</td>
+    </tr>
+    <tr class="firma-row" data-name="msc türkiye" data-origin="global (i̇sviçre)" data-services="konteyner denizyolu, kruvazör, kara lojistik" data-mode="deniz">
+      <td class="col-id">20</td>
+      <td class="col-name"><strong>MSC Türkiye</strong></td>
+      <td><span class="tag tag-global">Global (İsviçre)</span></td>
+      <td>(TR ofis)</td>
+      <td>İstanbul</td>
+      <td class="col-services">Konteyner denizyolu, kruvazör, kara lojistik</td>
+      <td>Deniz</td>
+      <td>200.000+</td>
+      <td>155 ülke</td>
+      <td>Özel (dünya no.1 taşıyıcı)</td>
+      <td><a href="https://www.msc.com/tr" target="_blank" rel="noopener">msc.com/tr</a></td>
+      <td class="col-notes">Dünyanın en büyük konteyner armatörü.</td>
+    </tr>
+    <tr class="firma-row" data-name="geodis türkiye" data-origin="global (fransa)" data-services="freight forwarding, kontrat lojistiği, karayolu, ekspres" data-mode="multimodal">
+      <td class="col-id">21</td>
+      <td class="col-name"><strong>Geodis Türkiye</strong></td>
+      <td><span class="tag tag-global">Global (Fransa)</span></td>
+      <td>(TR ofis)</td>
+      <td>İstanbul</td>
+      <td class="col-services">Freight forwarding, kontrat lojistiği, karayolu, ekspres</td>
+      <td>Multimodal</td>
+      <td>53.000+</td>
+      <td>170 ülke</td>
+      <td>€11,6 milyar</td>
+      <td><a href="https://geodis.com/tr" target="_blank" rel="noopener">geodis.com/tr</a></td>
+      <td class="col-notes">SNCF Grubu. Global 3PL top-10.</td>
+    </tr>
+    <tr class="firma-row" data-name="gefco türkiye (ceva&#x27;ya entegre)" data-origin="global" data-services="otomotiv lojistiği, bitmiş araç, tedarik zinciri" data-mode="multimodal">
+      <td class="col-id">22</td>
+      <td class="col-name"><strong>Gefco Türkiye (CEVA&#x27;ya entegre)</strong></td>
+      <td><span class="tag tag-global">Global</span></td>
+      <td>(TR ofis)</td>
+      <td>İstanbul</td>
+      <td class="col-services">Otomotiv lojistiği, bitmiş araç, tedarik zinciri</td>
+      <td>Multimodal</td>
+      <td>11.000+</td>
+      <td>45+ ülke</td>
+      <td>€4+ milyar</td>
+      <td><a href="https://www.gefco.net" target="_blank" rel="noopener">gefco.net</a></td>
+      <td class="col-notes">Otomotiv lojistiğinde uzman. CMA CGM (CEVA) tarafından satın alındı.</td>
+    </tr>
+    <tr class="firma-row" data-name="hellmann worldwide türkiye" data-origin="global (almanya)" data-services="havayolu, denizyolu, karayolu, kontrat, ekspres" data-mode="multimodal">
+      <td class="col-id">23</td>
+      <td class="col-name"><strong>Hellmann Worldwide Türkiye</strong></td>
+      <td><span class="tag tag-global">Global (Almanya)</span></td>
+      <td>(TR ofis)</td>
+      <td>İstanbul</td>
+      <td class="col-services">Havayolu, denizyolu, karayolu, kontrat, ekspres</td>
+      <td>Multimodal</td>
+      <td>14.000+</td>
+      <td>173 ülke</td>
+      <td>€4,4 milyar</td>
+      <td><a href="https://www.hellmann.com/tr-tr" target="_blank" rel="noopener">hellmann.com/tr-tr</a></td>
+      <td class="col-notes">Aile şirketi kökenli global oyuncu. 4 Türkiye lokasyonu.</td>
+    </tr>
+    <tr class="firma-row" data-name="rhenus logistics türkiye" data-origin="global (almanya)" data-services="karayolu, deniz, hava, kontrat lojistiği, gümrük, port logistics" data-mode="multimodal">
+      <td class="col-id">24</td>
+      <td class="col-name"><strong>Rhenus Logistics Türkiye</strong></td>
+      <td><span class="tag tag-global">Global (Almanya)</span></td>
+      <td>(TR ofis)</td>
+      <td>İstanbul</td>
+      <td class="col-services">Karayolu, deniz, hava, kontrat lojistiği, gümrük, port logistics</td>
+      <td>Multimodal</td>
+      <td>41.000+</td>
+      <td>70+ ülke</td>
+      <td>€8,7 milyar</td>
+      <td><a href="https://www.rhenus.group/tr" target="_blank" rel="noopener">rhenus.group/tr</a></td>
+      <td class="col-notes">Türkiye&#x27;yi tedarik zincirinin kalbi olarak görüyor. Genişleyen ofis ağı.</td>
+    </tr>
+    <tr class="firma-row" data-name="nippon express türkiye" data-origin="global (japonya)" data-services="hava, deniz, kara, kontrat lojistiği, otomotiv" data-mode="multimodal">
+      <td class="col-id">25</td>
+      <td class="col-name"><strong>Nippon Express Türkiye</strong></td>
+      <td><span class="tag tag-global">Global (Japonya)</span></td>
+      <td>(TR ofis)</td>
+      <td>İstanbul</td>
+      <td class="col-services">Hava, deniz, kara, kontrat lojistiği, otomotiv</td>
+      <td>Multimodal</td>
+      <td>76.000+</td>
+      <td>50+ ülke</td>
+      <td>¥2,5 trilyon</td>
+      <td><a href="https://www.nipponexpress.com/tr" target="_blank" rel="noopener">nipponexpress.com/tr</a></td>
+      <td class="col-notes">Japon lojistik devi. Otomotiv ve endüstriyel projelerde güçlü.</td>
+    </tr>
+    <tr class="firma-row" data-name="kerry logistics türkiye (asav)" data-origin="global (hong kong)" data-services="freight forwarding, entegre lojistik, e-ticaret" data-mode="multimodal">
+      <td class="col-id">26</td>
+      <td class="col-name"><strong>Kerry Logistics Türkiye (Asav)</strong></td>
+      <td><span class="tag tag-global">Global (Hong Kong)</span></td>
+      <td>2020 (Asav satın alma)</td>
+      <td>İstanbul</td>
+      <td class="col-services">Freight forwarding, entegre lojistik, e-ticaret</td>
+      <td>Multimodal</td>
+      <td>44.000+</td>
+      <td>60+ ülke</td>
+      <td>HK$70+ milyar</td>
+      <td><a href="https://www.kerrylogistics.com" target="_blank" rel="noopener">kerrylogistics.com</a></td>
+      <td class="col-notes">Kerry, Türk Asav Lojistik&#x27;in çoğunluğunu satın aldı.</td>
+    </tr>
+    <tr class="firma-row" data-name="psa bdp türkiye" data-origin="global (belçika/singapur)" data-services="kimya, petrokimya lojistiği, gümrük, depolama" data-mode="multimodal">
+      <td class="col-id">27</td>
+      <td class="col-name"><strong>PSA BDP Türkiye</strong></td>
+      <td><span class="tag tag-global">Global (Belçika/Singapur)</span></td>
+      <td>(TR ofis)</td>
+      <td>İstanbul</td>
+      <td class="col-services">Kimya, petrokimya lojistiği, gümrük, depolama</td>
+      <td>Multimodal</td>
+      <td>5.500+</td>
+      <td>135+ ülke</td>
+      <td>$2+ milyar</td>
+      <td><a href="https://www.psabdp.com" target="_blank" rel="noopener">psabdp.com</a></td>
+      <td class="col-notes">Kimya lojistiği global lideri. PSA International iştiraki.</td>
+    </tr>
+    <tr class="firma-row" data-name="talay lojistik" data-origin="türkiye" data-services="karayolu, freight forwarding, gümrük, depolama" data-mode="kara / deniz / hava">
+      <td class="col-id">28</td>
+      <td class="col-name"><strong>Talay Lojistik</strong></td>
+      <td><span class="tag tag-tr">Türkiye</span></td>
+      <td>1993</td>
+      <td>İstanbul</td>
+      <td class="col-services">Karayolu, freight forwarding, gümrük, depolama</td>
+      <td>Kara / Deniz / Hava</td>
+      <td>500+</td>
+      <td>Avrupa &amp; Ortadoğu</td>
+      <td>₺2+ milyar</td>
+      <td><a href="https://www.talay.com" target="_blank" rel="noopener">talay.com</a></td>
+      <td class="col-notes">Fortune 500 Türkiye listesinde. Karayolu taşımacılığında güçlü.</td>
+    </tr>
+    <tr class="firma-row" data-name="fevzi gandur logistics" data-origin="türkiye" data-services="denizyolu, karayolu, havayolu, depolama, proje" data-mode="multimodal">
+      <td class="col-id">29</td>
+      <td class="col-name"><strong>Fevzi Gandur Logistics</strong></td>
+      <td><span class="tag tag-tr">Türkiye</span></td>
+      <td>1946</td>
+      <td>İstanbul</td>
+      <td class="col-services">Denizyolu, karayolu, havayolu, depolama, proje</td>
+      <td>Multimodal</td>
+      <td>1.000+</td>
+      <td>20+ ülke</td>
+      <td>₺2+ milyar</td>
+      <td><a href="https://www.gandur.com.tr" target="_blank" rel="noopener">gandur.com.tr</a></td>
+      <td class="col-notes">En eski Türk lojistik firmalarından. Aile şirketi kökenli.</td>
+    </tr>
+    <tr class="firma-row" data-name="batı lojistik" data-origin="türkiye" data-services="karayolu, denizyolu, havayolu, gümrük, depolama, proje kargo" data-mode="multimodal">
+      <td class="col-id">30</td>
+      <td class="col-name"><strong>Batı Lojistik</strong></td>
+      <td><span class="tag tag-tr">Türkiye</span></td>
+      <td>1990</td>
+      <td>İstanbul</td>
+      <td class="col-services">Karayolu, denizyolu, havayolu, gümrük, depolama, proje kargo</td>
+      <td>Multimodal</td>
+      <td>500+</td>
+      <td>30+ ülke</td>
+      <td>₺1,5+ milyar</td>
+      <td><a href="https://www.bati.com.tr" target="_blank" rel="noopener">bati.com.tr</a></td>
+      <td class="col-notes">Freight forwarding&#x27;de köklü firma. Öğrenci staj programı.</td>
+    </tr>
+    <tr class="firma-row" data-name="balnak lojistik" data-origin="türkiye" data-services="karayolu, denizyolu, havayolu, gümrük, depolama" data-mode="multimodal">
+      <td class="col-id">31</td>
+      <td class="col-name"><strong>Balnak Lojistik</strong></td>
+      <td><span class="tag tag-tr">Türkiye</span></td>
+      <td>1991</td>
+      <td>İstanbul</td>
+      <td class="col-services">Karayolu, denizyolu, havayolu, gümrük, depolama</td>
+      <td>Multimodal</td>
+      <td>700+</td>
+      <td>40+ ülke</td>
+      <td>₺1,5+ milyar</td>
+      <td><a href="https://www.balnak.com" target="_blank" rel="noopener">balnak.com</a></td>
+      <td class="col-notes">Uluslararası taşımacılıkta güçlü marka. Freight forwarder.</td>
+    </tr>
+    <tr class="firma-row" data-name="kolay lojistik" data-origin="türkiye" data-services="e-ticaret lojistiği, hızlı teslimat, depolama, dağıtım" data-mode="karayolu">
+      <td class="col-id">32</td>
+      <td class="col-name"><strong>Kolay Lojistik</strong></td>
+      <td><span class="tag tag-tr">Türkiye</span></td>
+      <td>2015</td>
+      <td>İstanbul</td>
+      <td class="col-services">E-ticaret lojistiği, hızlı teslimat, depolama, dağıtım</td>
+      <td>Karayolu</td>
+      <td>3.000+</td>
+      <td>Türkiye + genişleme</td>
+      <td>₺2+ milyar</td>
+      <td><a href="https://www.kolaylojistik.com" target="_blank" rel="noopener">kolaylojistik.com</a></td>
+      <td class="col-notes">E-ticaret ve son mil teslimatta hızlı büyüyen firma.</td>
+    </tr>
+    <tr class="firma-row" data-name="aras kargo" data-origin="türkiye" data-services="yurtiçi &amp; yurtdışı kargo, ekspres, e-ticaret teslimat" data-mode="karayolu">
+      <td class="col-id">33</td>
+      <td class="col-name"><strong>Aras Kargo</strong></td>
+      <td><span class="tag tag-tr">Türkiye</span></td>
+      <td>1979</td>
+      <td>İstanbul</td>
+      <td class="col-services">Yurtiçi &amp; yurtdışı kargo, ekspres, e-ticaret teslimat</td>
+      <td>Karayolu</td>
+      <td>12.000+</td>
+      <td>Türkiye + Ortadoğu</td>
+      <td>₺5+ milyar</td>
+      <td><a href="https://www.araskargo.com.tr" target="_blank" rel="noopener">araskargo.com.tr</a></td>
+      <td class="col-notes">Türkiye&#x27;nin en büyük kargo firmalarından. Austrian Post iştiraki.</td>
+    </tr>
+    <tr class="firma-row" data-name="yurtiçi kargo" data-origin="türkiye" data-services="yurtiçi kargo, ekspres, e-ticaret teslimat, aktarma" data-mode="karayolu">
+      <td class="col-id">34</td>
+      <td class="col-name"><strong>Yurtiçi Kargo</strong></td>
+      <td><span class="tag tag-tr">Türkiye</span></td>
+      <td>1982</td>
+      <td>İstanbul</td>
+      <td class="col-services">Yurtiçi kargo, ekspres, e-ticaret teslimat, aktarma</td>
+      <td>Karayolu</td>
+      <td>15.000+</td>
+      <td>Türkiye geneli</td>
+      <td>₺6+ milyar</td>
+      <td><a href="https://www.yurticikargo.com" target="_blank" rel="noopener">yurticikargo.com</a></td>
+      <td class="col-notes">Türkiye&#x27;nin en yaygın şube ağına sahip kargo firması.</td>
+    </tr>
+    <tr class="firma-row" data-name="mng kargo" data-origin="türkiye" data-services="yurtiçi &amp; yurtdışı kargo, ekspres, e-ticaret" data-mode="karayolu / hava">
+      <td class="col-id">35</td>
+      <td class="col-name"><strong>MNG Kargo</strong></td>
+      <td><span class="tag tag-tr">Türkiye</span></td>
+      <td>1992</td>
+      <td>İstanbul</td>
+      <td class="col-services">Yurtiçi &amp; yurtdışı kargo, ekspres, e-ticaret</td>
+      <td>Karayolu / Hava</td>
+      <td>7.500+</td>
+      <td>15+ ülke</td>
+      <td>₺4+ milyar</td>
+      <td><a href="https://www.mngkargo.com.tr" target="_blank" rel="noopener">mngkargo.com.tr</a></td>
+      <td class="col-notes">MNG Grubu iştiraki. Havayolu kargo lisansı da mevcut.</td>
+    </tr>
+    <tr class="firma-row" data-name="ptt kargo" data-origin="türkiye" data-services="yurtiçi &amp; yurtdışı posta, kargo, e-ticaret" data-mode="karayolu / hava">
+      <td class="col-id">36</td>
+      <td class="col-name"><strong>PTT Kargo</strong></td>
+      <td><span class="tag tag-tr">Türkiye</span></td>
+      <td>1840 (PTT)</td>
+      <td>Ankara</td>
+      <td class="col-services">Yurtiçi &amp; yurtdışı posta, kargo, e-ticaret</td>
+      <td>Karayolu / Hava</td>
+      <td>40.000+ (PTT)</td>
+      <td>190+ ülke (posta ağı)</td>
+      <td>Devlet kuruluşu</td>
+      <td><a href="https://www.ptt.gov.tr" target="_blank" rel="noopener">ptt.gov.tr</a></td>
+      <td class="col-notes">Türkiye&#x27;nin en eski ve en geniş dağıtım ağı. UPU üyesi.</td>
+    </tr>
+    <tr class="firma-row" data-name="sürat kargo" data-origin="türkiye" data-services="yurtiçi kargo, ekspres, e-ticaret teslimat" data-mode="karayolu">
+      <td class="col-id">37</td>
+      <td class="col-name"><strong>Sürat Kargo</strong></td>
+      <td><span class="tag tag-tr">Türkiye</span></td>
+      <td>1990</td>
+      <td>İstanbul</td>
+      <td class="col-services">Yurtiçi kargo, ekspres, e-ticaret teslimat</td>
+      <td>Karayolu</td>
+      <td>3.000+</td>
+      <td>Türkiye geneli</td>
+      <td>₺1+ milyar</td>
+      <td><a href="https://www.suratkargo.com.tr" target="_blank" rel="noopener">suratkargo.com.tr</a></td>
+      <td class="col-notes">Yurtiçi kargoda köklü marka.</td>
+    </tr>
+    <tr class="firma-row" data-name="trendyol express" data-origin="türkiye" data-services="e-ticaret teslimat, aynı gün, son mil, mikro dağıtım" data-mode="karayolu / motor">
+      <td class="col-id">38</td>
+      <td class="col-name"><strong>Trendyol Express</strong></td>
+      <td><span class="tag tag-tr">Türkiye</span></td>
+      <td>2019</td>
+      <td>İstanbul</td>
+      <td class="col-services">E-ticaret teslimat, aynı gün, son mil, mikro dağıtım</td>
+      <td>Karayolu / Motor</td>
+      <td>10.000+</td>
+      <td>Türkiye + Körfez</td>
+      <td>Trendyol iştiraki</td>
+      <td><a href="https://www.trendyolexpress.com" target="_blank" rel="noopener">trendyolexpress.com</a></td>
+      <td class="col-notes">E-ticaret devi Trendyol&#x27;un lojistik kolu. Hızla büyüyen kariyer fırsatları.</td>
+    </tr>
+    <tr class="firma-row" data-name="hepsijet" data-origin="türkiye" data-services="e-ticaret teslimat, aynı gün, son mil, iade" data-mode="karayolu">
+      <td class="col-id">39</td>
+      <td class="col-name"><strong>Hepsijet</strong></td>
+      <td><span class="tag tag-tr">Türkiye</span></td>
+      <td>2017</td>
+      <td>İstanbul</td>
+      <td class="col-services">E-ticaret teslimat, aynı gün, son mil, iade</td>
+      <td>Karayolu</td>
+      <td>8.000+</td>
+      <td>Türkiye geneli</td>
+      <td>Hepsiburada iştiraki</td>
+      <td><a href="https://www.hepsijet.com" target="_blank" rel="noopener">hepsijet.com</a></td>
+      <td class="col-notes">Hepsiburada iştiraki. E-ticaret lojistiğinde büyüyen oyuncu.</td>
+    </tr>
+    <tr class="firma-row" data-name="getir lojistik" data-origin="türkiye" data-services="ultra hızlı teslimat, market, e-ticaret, kurye" data-mode="motor / bisiklet">
+      <td class="col-id">40</td>
+      <td class="col-name"><strong>Getir Lojistik</strong></td>
+      <td><span class="tag tag-tr">Türkiye</span></td>
+      <td>2015</td>
+      <td>İstanbul</td>
+      <td class="col-services">Ultra hızlı teslimat, market, e-ticaret, kurye</td>
+      <td>Motor / Bisiklet</td>
+      <td>15.000+</td>
+      <td>5+ ülke (aktif TR)</td>
+      <td>Getir iştiraki</td>
+      <td><a href="https://www.getir.com" target="_blank" rel="noopener">getir.com</a></td>
+      <td class="col-notes">10-dakika teslimatın öncüsü. Dijital lojistik inovasyonu.</td>
+    </tr>
+    <tr class="firma-row" data-name="lima lojistik" data-origin="türkiye" data-services="karayolu, freight forwarding, depolama, gümrük" data-mode="multimodal">
+      <td class="col-id">41</td>
+      <td class="col-name"><strong>Lima Lojistik</strong></td>
+      <td><span class="tag tag-tr">Türkiye</span></td>
+      <td>2013</td>
+      <td>İstanbul</td>
+      <td class="col-services">Karayolu, freight forwarding, depolama, gümrük</td>
+      <td>Multimodal</td>
+      <td>300+</td>
+      <td>Avrupa &amp; Ortadoğu</td>
+      <td>₺500+ milyon</td>
+      <td><a href="https://www.limalojistik.com" target="_blank" rel="noopener">limalojistik.com</a></td>
+      <td class="col-notes">Türkiye&#x27;nin en hızlı büyüyen firmaları listesinde. Genç ve dinamik.</td>
+    </tr>
+    <tr class="firma-row" data-name="ekspres kurye hizmetleri" data-origin="türkiye" data-services="kurye, ekspres teslimat, evrak, e-ticaret" data-mode="motor / karayolu">
+      <td class="col-id">42</td>
+      <td class="col-name"><strong>Ekspres Kurye Hizmetleri</strong></td>
+      <td><span class="tag tag-tr">Türkiye</span></td>
+      <td>1990</td>
+      <td>İstanbul</td>
+      <td class="col-services">Kurye, ekspres teslimat, evrak, e-ticaret</td>
+      <td>Motor / Karayolu</td>
+      <td>5.000+</td>
+      <td>Türkiye geneli</td>
+      <td>₺13+ milyar</td>
+      <td><a href="https://www.ekh.com.tr" target="_blank" rel="noopener">ekh.com.tr</a></td>
+      <td class="col-notes">Şehir içi kurye hizmetlerinde büyük oyuncu.</td>
+    </tr>
+    <tr class="firma-row" data-name="ceva-bdp türkiye" data-origin="global" data-services="kimya, petrokimya, freight forwarding" data-mode="multimodal">
+      <td class="col-id">43</td>
+      <td class="col-name"><strong>Ceva-BDP Türkiye</strong></td>
+      <td><span class="tag tag-global">Global</span></td>
+      <td>(TR ofis)</td>
+      <td>İstanbul</td>
+      <td class="col-services">Kimya, petrokimya, freight forwarding</td>
+      <td>Multimodal</td>
+      <td>5.500+</td>
+      <td>135 ülke</td>
+      <td>Ceva Grup&#x27;ta</td>
+      <td><a href="https://www.cevalogistics.com" target="_blank" rel="noopener">cevalogistics.com</a></td>
+      <td class="col-notes">Kimya lojistiği uzmanı. PSA BDP&#x27;nin yeni sahibi CEVA&#x27;dır.</td>
+    </tr>
+    <tr class="firma-row" data-name="ulusoy lojistik" data-origin="türkiye" data-services="karayolu, denizyolu, ro-ro, gümrük, depolama" data-mode="kara / deniz (ro-ro)">
+      <td class="col-id">44</td>
+      <td class="col-name"><strong>Ulusoy Lojistik</strong></td>
+      <td><span class="tag tag-tr">Türkiye</span></td>
+      <td>1990</td>
+      <td>İstanbul</td>
+      <td class="col-services">Karayolu, denizyolu, Ro-Ro, gümrük, depolama</td>
+      <td>Kara / Deniz (Ro-Ro)</td>
+      <td>1.500+</td>
+      <td>30+ ülke</td>
+      <td>₺2+ milyar</td>
+      <td><a href="https://www.ulusoylojistik.com.tr" target="_blank" rel="noopener">ulusoylojistik.com.tr</a></td>
+      <td class="col-notes">Ro-Ro taşımacılığında güçlü. Karadeniz&#x27;de aktif.</td>
+    </tr>
+    <tr class="firma-row" data-name="turkon lojistik" data-origin="türkiye" data-services="konteyner denizyolu, feeder, entegre lojistik" data-mode="deniz / kara">
+      <td class="col-id">45</td>
+      <td class="col-name"><strong>Turkon Lojistik</strong></td>
+      <td><span class="tag tag-tr">Türkiye</span></td>
+      <td>2003</td>
+      <td>İstanbul</td>
+      <td class="col-services">Konteyner denizyolu, feeder, entegre lojistik</td>
+      <td>Deniz / Kara</td>
+      <td>800+</td>
+      <td>40+ ülke</td>
+      <td>₺2+ milyar</td>
+      <td><a href="https://www.turkon.com" target="_blank" rel="noopener">turkon.com</a></td>
+      <td class="col-notes">Türkiye&#x27;nin ilk konteyner armatörü. Akdeniz ve Karadeniz&#x27;de güçlü.</td>
+    </tr>
+    <tr class="firma-row" data-name="arkas konteyner taşımacılık" data-origin="türkiye" data-services="konteyner denizyolu, feeder, liman" data-mode="deniz">
+      <td class="col-id">46</td>
+      <td class="col-name"><strong>Arkas Konteyner Taşımacılık</strong></td>
+      <td><span class="tag tag-tr">Türkiye</span></td>
+      <td>1999</td>
+      <td>İzmir</td>
+      <td class="col-services">Konteyner denizyolu, feeder, liman</td>
+      <td>Deniz</td>
+      <td>2.000+</td>
+      <td>20+ ülke</td>
+      <td>₺10+ milyar</td>
+      <td><a href="https://www.arkasline.com.tr" target="_blank" rel="noopener">arkasline.com.tr</a></td>
+      <td class="col-notes">Arkas Holding iştiraki. Doğu Akdeniz&#x27;in en büyük armatörü.</td>
+    </tr>
+    <tr class="firma-row" data-name="mersin uluslararası liman i̇şletmeciliği (mip)" data-origin="türkiye/psa" data-services="liman işletmeciliği, konteyner elleçleme, depolama" data-mode="deniz / kara">
+      <td class="col-id">47</td>
+      <td class="col-name"><strong>Mersin Uluslararası Liman İşletmeciliği (MIP)</strong></td>
+      <td><span class="tag tag-tr">Türkiye/PSA</span></td>
+      <td>2007</td>
+      <td>Mersin</td>
+      <td class="col-services">Liman işletmeciliği, konteyner elleçleme, depolama</td>
+      <td>Deniz / Kara</td>
+      <td>1.500+</td>
+      <td>PSA global ağı</td>
+      <td>₺15+ milyar</td>
+      <td><a href="https://www.mersinport.com.tr" target="_blank" rel="noopener">mersinport.com.tr</a></td>
+      <td class="col-notes">Türkiye&#x27;nin en büyük konteyner limanlarından. PSA-Akfen ortaklığı.</td>
+    </tr>
+    <tr class="firma-row" data-name="yılport holding" data-origin="türkiye" data-services="liman işletmeciliği (yılport, gemport), konteyner, terminal" data-mode="deniz">
+      <td class="col-id">48</td>
+      <td class="col-name"><strong>Yılport Holding</strong></td>
+      <td><span class="tag tag-tr">Türkiye</span></td>
+      <td>2003</td>
+      <td>İstanbul</td>
+      <td class="col-services">Liman işletmeciliği (Yılport, Gemport), konteyner, terminal</td>
+      <td>Deniz</td>
+      <td>2.500+</td>
+      <td>4 kıtada 20+ liman</td>
+      <td>₺10+ milyar</td>
+      <td><a href="https://www.yilport.com" target="_blank" rel="noopener">yilport.com</a></td>
+      <td class="col-notes">Yıldırım Grubu iştiraki. Global liman operatörü.</td>
+    </tr>
+    <tr class="firma-row" data-name="global ports holding" data-origin="türkiye" data-services="kruvazör liman işletmeciliği, ticari liman" data-mode="deniz">
+      <td class="col-id">49</td>
+      <td class="col-name"><strong>Global Ports Holding</strong></td>
+      <td><span class="tag tag-tr">Türkiye</span></td>
+      <td>2004</td>
+      <td>İstanbul</td>
+      <td class="col-services">Kruvazör liman işletmeciliği, ticari liman</td>
+      <td>Deniz</td>
+      <td>1.000+</td>
+      <td>20+ liman (dünya)</td>
+      <td>£150+ milyon</td>
+      <td><a href="https://www.globalportsholding.com" target="_blank" rel="noopener">globalportsholding.com</a></td>
+      <td class="col-notes">Dünyanın en büyük kruvazör liman operatörü. LSE&#x27;de listeli.</td>
+    </tr>
+    <tr class="firma-row" data-name="çelebi hava servisi" data-origin="türkiye" data-services="havalimanı yer hizmetleri, kargo, ground handling" data-mode="hava">
+      <td class="col-id">50</td>
+      <td class="col-name"><strong>Çelebi Hava Servisi</strong></td>
+      <td><span class="tag tag-tr">Türkiye</span></td>
+      <td>1958</td>
+      <td>İstanbul</td>
+      <td class="col-services">Havalimanı yer hizmetleri, kargo, ground handling</td>
+      <td>Hava</td>
+      <td>15.000+</td>
+      <td>6 ülke, 60+ havalimanı</td>
+      <td>₺10,8+ milyar (2023)</td>
+      <td><a href="https://www.celebiaviation.com" target="_blank" rel="noopener">celebiaviation.com</a></td>
+      <td class="col-notes">Türkiye&#x27;nin en büyük yer hizmetleri firması. Havacılık kariyeri için ideal.</td>
+    </tr>
+    <tr class="firma-row" data-name="tav havalimanları" data-origin="türkiye" data-services="havalimanı işletmeciliği, kargo terminali, yer hizmetleri" data-mode="hava">
+      <td class="col-id">51</td>
+      <td class="col-name"><strong>TAV Havalimanları</strong></td>
+      <td><span class="tag tag-tr">Türkiye</span></td>
+      <td>1997</td>
+      <td>İstanbul</td>
+      <td class="col-services">Havalimanı işletmeciliği, kargo terminali, yer hizmetleri</td>
+      <td>Hava</td>
+      <td>25.000+</td>
+      <td>15 ülke, 90+ havalimanı</td>
+      <td>₺30+ milyar</td>
+      <td><a href="https://www.tav.aero" target="_blank" rel="noopener">tav.aero</a></td>
+      <td class="col-notes">ADP Grubu iştiraki. Havalimanı ve havacılık lojistiği için ideal.</td>
+    </tr>
+    <tr class="firma-row" data-name="havaş" data-origin="türkiye" data-services="havalimanı yer hizmetleri, kargo, uçak elleçleme" data-mode="hava">
+      <td class="col-id">52</td>
+      <td class="col-name"><strong>Havaş</strong></td>
+      <td><span class="tag tag-tr">Türkiye</span></td>
+      <td>1933</td>
+      <td>İstanbul</td>
+      <td class="col-services">Havalimanı yer hizmetleri, kargo, uçak elleçleme</td>
+      <td>Hava</td>
+      <td>8.000+</td>
+      <td>Türkiye + Riga</td>
+      <td>₺5+ milyar</td>
+      <td><a href="https://www.havas.net" target="_blank" rel="noopener">havas.net</a></td>
+      <td class="col-notes">Türkiye&#x27;nin ilk yer hizmetleri firması. TAV bünyesinde.</td>
+    </tr>
+    <tr class="firma-row" data-name="turkish cargo" data-origin="türkiye" data-services="havayolu kargo, express, soğuk zincir, canlı hayvan" data-mode="hava">
+      <td class="col-id">53</td>
+      <td class="col-name"><strong>Turkish Cargo</strong></td>
+      <td><span class="tag tag-tr">Türkiye</span></td>
+      <td>1936</td>
+      <td>İstanbul</td>
+      <td class="col-services">Havayolu kargo, express, soğuk zincir, canlı hayvan</td>
+      <td>Hava</td>
+      <td>4.500+</td>
+      <td>130+ ülke, 340+ destinasyon</td>
+      <td>$3+ milyar</td>
+      <td><a href="https://www.turkishcargo.com" target="_blank" rel="noopener">turkishcargo.com</a></td>
+      <td class="col-notes">Türk Hava Yolları kargo kolu. Dünya&#x27;da top-3 kargo taşıyıcısı.</td>
+    </tr>
+    <tr class="firma-row" data-name="uls airlines cargo" data-origin="türkiye" data-services="havayolu kargo, charter, ağır yük" data-mode="hava">
+      <td class="col-id">54</td>
+      <td class="col-name"><strong>ULS Airlines Cargo</strong></td>
+      <td><span class="tag tag-tr">Türkiye</span></td>
+      <td>2004</td>
+      <td>İstanbul</td>
+      <td class="col-services">Havayolu kargo, charter, ağır yük</td>
+      <td>Hava</td>
+      <td>500+</td>
+      <td>40+ destinasyon</td>
+      <td>₺1+ milyar</td>
+      <td><a href="https://www.uls.aero" target="_blank" rel="noopener">uls.aero</a></td>
+      <td class="col-notes">Kargo uçak filosuyla Türkiye&#x27;nin özel kargo taşıyıcısı.</td>
+    </tr>
+    <tr class="firma-row" data-name="mycargo airlines" data-origin="türkiye" data-services="havayolu kargo, freighter, dış hat" data-mode="hava">
+      <td class="col-id">55</td>
+      <td class="col-name"><strong>MyCargo Airlines</strong></td>
+      <td><span class="tag tag-tr">Türkiye</span></td>
+      <td>2011</td>
+      <td>İstanbul</td>
+      <td class="col-services">Havayolu kargo, freighter, dış hat</td>
+      <td>Hava</td>
+      <td>300+</td>
+      <td>30+ destinasyon</td>
+      <td>₺500+ milyon</td>
+      <td><a href="https://www.mycargo.aero" target="_blank" rel="noopener">mycargo.aero</a></td>
+      <td class="col-notes">Charter ve tarifeli kargo uçuşları. Yeni büyüyen oyuncu.</td>
+    </tr>
+    <tr class="firma-row" data-name="grupmar lojistik" data-origin="türkiye" data-services="karayolu, gümrük, depolama, freight forwarding" data-mode="multimodal">
+      <td class="col-id">56</td>
+      <td class="col-name"><strong>Grupmar Lojistik</strong></td>
+      <td><span class="tag tag-tr">Türkiye</span></td>
+      <td>1998</td>
+      <td>İstanbul</td>
+      <td class="col-services">Karayolu, gümrük, depolama, freight forwarding</td>
+      <td>Multimodal</td>
+      <td>400+</td>
+      <td>Avrupa &amp; BDT</td>
+      <td>₺800+ milyon</td>
+      <td><a href="https://www.grupmar.com" target="_blank" rel="noopener">grupmar.com</a></td>
+      <td class="col-notes">Karayolu ve gümrük hizmetlerinde uzman.</td>
+    </tr>
+    <tr class="firma-row" data-name="ortadoğu lojistik" data-origin="türkiye" data-services="karayolu, freight forwarding, gümrük, depolama" data-mode="multimodal">
+      <td class="col-id">57</td>
+      <td class="col-name"><strong>Ortadoğu Lojistik</strong></td>
+      <td><span class="tag tag-tr">Türkiye</span></td>
+      <td>1996</td>
+      <td>İstanbul</td>
+      <td class="col-services">Karayolu, freight forwarding, gümrük, depolama</td>
+      <td>Multimodal</td>
+      <td>500+</td>
+      <td>Ortadoğu &amp; Avrupa</td>
+      <td>₺600+ milyon</td>
+      <td><a href="https://www.ortadogu.com.tr" target="_blank" rel="noopener">ortadogu.com.tr</a></td>
+      <td class="col-notes">Ortadoğu rotalarında uzman freight forwarder.</td>
+    </tr>
+    <tr class="firma-row" data-name="zet lojistik" data-origin="türkiye" data-services="karayolu, denizyolu, havayolu, gümrük" data-mode="multimodal">
+      <td class="col-id">58</td>
+      <td class="col-name"><strong>Zet Lojistik</strong></td>
+      <td><span class="tag tag-tr">Türkiye</span></td>
+      <td>1995</td>
+      <td>İstanbul</td>
+      <td class="col-services">Karayolu, denizyolu, havayolu, gümrük</td>
+      <td>Multimodal</td>
+      <td>400+</td>
+      <td>40+ ülke</td>
+      <td>₺700+ milyon</td>
+      <td><a href="https://www.zetlojistik.com" target="_blank" rel="noopener">zetlojistik.com</a></td>
+      <td class="col-notes">UTİKAD üyesi, entegre lojistik hizmetleri.</td>
+    </tr>
+    <tr class="firma-row" data-name="nuh lojistik" data-origin="türkiye" data-services="karayolu, gümrük, depolama, ağır yük" data-mode="karayolu">
+      <td class="col-id">59</td>
+      <td class="col-name"><strong>Nuh Lojistik</strong></td>
+      <td><span class="tag tag-tr">Türkiye</span></td>
+      <td>1990</td>
+      <td>İstanbul</td>
+      <td class="col-services">Karayolu, gümrük, depolama, ağır yük</td>
+      <td>Karayolu</td>
+      <td>500+</td>
+      <td>Türkiye + bölge</td>
+      <td>₺1+ milyar</td>
+      <td><a href="https://www.nuhlojistik.com.tr" target="_blank" rel="noopener">nuhlojistik.com.tr</a></td>
+      <td class="col-notes">Nuh Grubu iştiraki. Karayolu ve gümrükte köklü.</td>
+    </tr>
+    <tr class="firma-row" data-name="kalyon lojistik" data-origin="türkiye" data-services="proje lojistiği, ağır yük, karayolu, deniz" data-mode="multimodal">
+      <td class="col-id">60</td>
+      <td class="col-name"><strong>Kalyon Lojistik</strong></td>
+      <td><span class="tag tag-tr">Türkiye</span></td>
+      <td>1998</td>
+      <td>İstanbul</td>
+      <td class="col-services">Proje lojistiği, ağır yük, karayolu, deniz</td>
+      <td>Multimodal</td>
+      <td>800+</td>
+      <td>30+ ülke</td>
+      <td>₺1,5+ milyar</td>
+      <td><a href="https://www.kalyonlojistik.com" target="_blank" rel="noopener">kalyonlojistik.com</a></td>
+      <td class="col-notes">Kalyon Holding iştiraki. Proje ve enerji lojistiğinde uzman.</td>
+    </tr>
+    <tr class="firma-row" data-name="ekinciler lojistik" data-origin="türkiye" data-services="liman, gemi acenteliği, karayolu, demir-çelik lojistiği" data-mode="deniz / kara">
+      <td class="col-id">61</td>
+      <td class="col-name"><strong>Ekinciler Lojistik</strong></td>
+      <td><span class="tag tag-tr">Türkiye</span></td>
+      <td>1975</td>
+      <td>İskenderun</td>
+      <td class="col-services">Liman, gemi acenteliği, karayolu, demir-çelik lojistiği</td>
+      <td>Deniz / Kara</td>
+      <td>600+</td>
+      <td>Ortadoğu, Karadeniz</td>
+      <td>₺1+ milyar</td>
+      <td><a href="https://www.ekincilerlojistik.com" target="_blank" rel="noopener">ekincilerlojistik.com</a></td>
+      <td class="col-notes">Ekinciler Holding iştiraki. Demir-çelik sektörü lojistiği.</td>
+    </tr>
+    <tr class="firma-row" data-name="login lojistik" data-origin="türkiye" data-services="karayolu, denizyolu, gümrük, e-ticaret" data-mode="multimodal">
+      <td class="col-id">62</td>
+      <td class="col-name"><strong>LOGIN Lojistik</strong></td>
+      <td><span class="tag tag-tr">Türkiye</span></td>
+      <td>2006</td>
+      <td>Kocaeli</td>
+      <td class="col-services">Karayolu, denizyolu, gümrük, e-ticaret</td>
+      <td>Multimodal</td>
+      <td>300+</td>
+      <td>25+ ülke</td>
+      <td>₺500+ milyon</td>
+      <td><a href="https://www.loginlojistik.com" target="_blank" rel="noopener">loginlojistik.com</a></td>
+      <td class="col-notes">UTİKAD üyesi. Kocaeli merkezli, sanayi lojistiği.</td>
+    </tr>
+    <tr class="firma-row" data-name="netlift" data-origin="türkiye" data-services="dijital freight platform, karayolu, teknoloji" data-mode="karayolu">
+      <td class="col-id">63</td>
+      <td class="col-name"><strong>Netlift</strong></td>
+      <td><span class="tag tag-tr">Türkiye</span></td>
+      <td>2016</td>
+      <td>İstanbul</td>
+      <td class="col-services">Dijital freight platform, karayolu, teknoloji</td>
+      <td>Karayolu</td>
+      <td>200+</td>
+      <td>Türkiye + Avrupa</td>
+      <td>Girişim</td>
+      <td><a href="https://www.netlift.com" target="_blank" rel="noopener">netlift.com</a></td>
+      <td class="col-notes">Türkiye&#x27;nin &#x27;Uber Freight&#x27;i. Dijital lojistik girişimi.</td>
+    </tr>
+    <tr class="firma-row" data-name="trendtaşımacılık" data-origin="türkiye" data-services="e-ticaret lojistiği, dijital dağıtım" data-mode="karayolu">
+      <td class="col-id">64</td>
+      <td class="col-name"><strong>Trendtaşımacılık</strong></td>
+      <td><span class="tag tag-tr">Türkiye</span></td>
+      <td>2018</td>
+      <td>İstanbul</td>
+      <td class="col-services">E-ticaret lojistiği, dijital dağıtım</td>
+      <td>Karayolu</td>
+      <td>500+</td>
+      <td>Türkiye + Körfez</td>
+      <td>Girişim</td>
+      <td><a href="https://www.trendtasimacilik.com" target="_blank" rel="noopener">trendtasimacilik.com</a></td>
+      <td class="col-notes">Dijital lojistik ve teknoloji odaklı yeni nesil oyuncu.</td>
+    </tr>
+    <tr class="firma-row" data-name="doğuş lojistik" data-origin="türkiye" data-services="otomotiv lojistiği, bitmiş araç, karayolu" data-mode="kara / deniz">
+      <td class="col-id">65</td>
+      <td class="col-name"><strong>Doğuş Lojistik</strong></td>
+      <td><span class="tag tag-tr">Türkiye</span></td>
+      <td>2000</td>
+      <td>İstanbul</td>
+      <td class="col-services">Otomotiv lojistiği, bitmiş araç, karayolu</td>
+      <td>Kara / Deniz</td>
+      <td>400+</td>
+      <td>Türkiye + Avrupa</td>
+      <td>₺500+ milyon</td>
+      <td><a href="https://www.dogusotomotiv.com.tr" target="_blank" rel="noopener">dogusotomotiv.com.tr</a></td>
+      <td class="col-notes">Doğuş Otomotiv iştiraki. Otomotiv lojistiğinde uzman.</td>
+    </tr>
+    <tr class="firma-row" data-name="koçsistem / otokoç lojistik" data-origin="türkiye" data-services="otomotiv lojistiği, iç lojistik, dağıtım" data-mode="karayolu">
+      <td class="col-id">66</td>
+      <td class="col-name"><strong>KoçSistem / Otokoç Lojistik</strong></td>
+      <td><span class="tag tag-tr">Türkiye</span></td>
+      <td>1985</td>
+      <td>İstanbul</td>
+      <td class="col-services">Otomotiv lojistiği, iç lojistik, dağıtım</td>
+      <td>Karayolu</td>
+      <td>800+</td>
+      <td>Türkiye + bölge</td>
+      <td>₺2+ milyar</td>
+      <td><a href="https://www.otokoc.com.tr" target="_blank" rel="noopener">otokoc.com.tr</a></td>
+      <td class="col-notes">Koç Holding iştiraki. Ford, Fiat gibi markaların lojistiği.</td>
+    </tr>
+    <tr class="firma-row" data-name="migros depoculuk &amp; lojistik" data-origin="türkiye" data-services="perakende lojistiği, soğuk zincir, market dağıtımı" data-mode="karayolu / soğuk">
+      <td class="col-id">67</td>
+      <td class="col-name"><strong>Migros Depoculuk &amp; Lojistik</strong></td>
+      <td><span class="tag tag-tr">Türkiye</span></td>
+      <td>1954</td>
+      <td>İstanbul</td>
+      <td class="col-services">Perakende lojistiği, soğuk zincir, market dağıtımı</td>
+      <td>Karayolu / Soğuk</td>
+      <td>3.000+</td>
+      <td>Türkiye + bölge</td>
+      <td>₺5+ milyar</td>
+      <td><a href="https://www.migroskurumsal.com" target="_blank" rel="noopener">migroskurumsal.com</a></td>
+      <td class="col-notes">Migros perakende lojistiği. FMCG için ideal deneyim.</td>
+    </tr>
+    <tr class="firma-row" data-name="anadolu grubu lojistik" data-origin="türkiye" data-services="i̇çecek/fmcg lojistiği, dağıtım, depolama" data-mode="karayolu">
+      <td class="col-id">68</td>
+      <td class="col-name"><strong>Anadolu Grubu Lojistik</strong></td>
+      <td><span class="tag tag-tr">Türkiye</span></td>
+      <td>1950</td>
+      <td>İstanbul</td>
+      <td class="col-services">İçecek/FMCG lojistiği, dağıtım, depolama</td>
+      <td>Karayolu</td>
+      <td>5.000+</td>
+      <td>Türkiye + bölge</td>
+      <td>₺10+ milyar</td>
+      <td><a href="https://www.anadolugrubu.com.tr" target="_blank" rel="noopener">anadolugrubu.com.tr</a></td>
+      <td class="col-notes">Anadolu Grubu FMCG dağıtımı. Coca-Cola İçecek lojistiği.</td>
+    </tr>
+    <tr class="firma-row" data-name="ford otosan lojistik" data-origin="türkiye" data-services="otomotiv iç lojistiği, tedarik zinciri, ihracat" data-mode="karayolu / deniz">
+      <td class="col-id">69</td>
+      <td class="col-name"><strong>Ford Otosan Lojistik</strong></td>
+      <td><span class="tag tag-tr">Türkiye</span></td>
+      <td>1959</td>
+      <td>Kocaeli</td>
+      <td class="col-services">Otomotiv iç lojistiği, tedarik zinciri, ihracat</td>
+      <td>Karayolu / Deniz</td>
+      <td>12.000+</td>
+      <td>80+ ülke ihracat</td>
+      <td>₺500+ milyar (Ford Otosan)</td>
+      <td><a href="https://www.fordotosan.com.tr" target="_blank" rel="noopener">fordotosan.com.tr</a></td>
+      <td class="col-notes">Ford Otosan tedarik zinciri. Otomotiv SC kariyer fırsatları.</td>
+    </tr>
+    <tr class="firma-row" data-name="tofaş lojistik" data-origin="türkiye" data-services="otomotiv iç lojistiği, ihracat, tedarik zinciri" data-mode="karayolu / deniz">
+      <td class="col-id">70</td>
+      <td class="col-name"><strong>Tofaş Lojistik</strong></td>
+      <td><span class="tag tag-tr">Türkiye</span></td>
+      <td>1968</td>
+      <td>Bursa</td>
+      <td class="col-services">Otomotiv iç lojistiği, ihracat, tedarik zinciri</td>
+      <td>Karayolu / Deniz</td>
+      <td>10.000+</td>
+      <td>60+ ülke ihracat</td>
+      <td>₺400+ milyar (Tofaş)</td>
+      <td><a href="https://www.tofas.com.tr" target="_blank" rel="noopener">tofas.com.tr</a></td>
+      <td class="col-notes">Fiat-Chrysler Türkiye ortağı. Otomotiv SC uzmanı.</td>
+    </tr>
+    <tr class="firma-row" data-name="toyota boshoku türkiye" data-origin="global (japonya)" data-services="otomotiv tedarik zinciri, jit, iç lojistik" data-mode="karayolu">
+      <td class="col-id">71</td>
+      <td class="col-name"><strong>Toyota Boshoku Türkiye</strong></td>
+      <td><span class="tag tag-global">Global (Japonya)</span></td>
+      <td>(TR ofis)</td>
+      <td>Sakarya</td>
+      <td class="col-services">Otomotiv tedarik zinciri, JIT, iç lojistik</td>
+      <td>Karayolu</td>
+      <td>60.000+</td>
+      <td>27 ülke</td>
+      <td>¥1,5+ trilyon</td>
+      <td><a href="https://www.toyota-boshoku.com" target="_blank" rel="noopener">toyota-boshoku.com</a></td>
+      <td class="col-notes">Toyota tedarikçisi. Yalın üretim ve JIT lojistiği eğitimi.</td>
+    </tr>
+    <tr class="firma-row" data-name="petrol ofisi (poaş)" data-origin="türkiye" data-services="akaryakıt lojistiği, tanker, depo, boru hattı" data-mode="kara / deniz / boru">
+      <td class="col-id">72</td>
+      <td class="col-name"><strong>Petrol Ofisi (POAŞ)</strong></td>
+      <td><span class="tag tag-tr">Türkiye</span></td>
+      <td>1941</td>
+      <td>İstanbul</td>
+      <td class="col-services">Akaryakıt lojistiği, tanker, depo, boru hattı</td>
+      <td>Kara / Deniz / Boru</td>
+      <td>5.000+</td>
+      <td>Türkiye + bölge</td>
+      <td>₺100+ milyar</td>
+      <td><a href="https://www.petrolofisi.com.tr" target="_blank" rel="noopener">petrolofisi.com.tr</a></td>
+      <td class="col-notes">Vitol Grubu. Enerji ve akaryakıt lojistiğinde lider.</td>
+    </tr>
+    <tr class="firma-row" data-name="opet" data-origin="türkiye" data-services="akaryakıt lojistiği, tanker, depo" data-mode="karayolu / deniz">
+      <td class="col-id">73</td>
+      <td class="col-name"><strong>Opet</strong></td>
+      <td><span class="tag tag-tr">Türkiye</span></td>
+      <td>1992</td>
+      <td>İstanbul</td>
+      <td class="col-services">Akaryakıt lojistiği, tanker, depo</td>
+      <td>Karayolu / Deniz</td>
+      <td>3.000+</td>
+      <td>Türkiye</td>
+      <td>₺80+ milyar</td>
+      <td><a href="https://www.opet.com.tr" target="_blank" rel="noopener">opet.com.tr</a></td>
+      <td class="col-notes">Koç Holding iştiraki. Akaryakıt dağıtımında güçlü.</td>
+    </tr>
+    <tr class="firma-row" data-name="aygaz" data-origin="türkiye" data-services="lpg lojistiği, tüp gaz, dolum, dağıtım" data-mode="karayolu / deniz">
+      <td class="col-id">74</td>
+      <td class="col-name"><strong>Aygaz</strong></td>
+      <td><span class="tag tag-tr">Türkiye</span></td>
+      <td>1961</td>
+      <td>İstanbul</td>
+      <td class="col-services">LPG lojistiği, tüp gaz, dolum, dağıtım</td>
+      <td>Karayolu / Deniz</td>
+      <td>3.500+</td>
+      <td>Türkiye + bölge</td>
+      <td>₺20+ milyar</td>
+      <td><a href="https://www.aygaz.com.tr" target="_blank" rel="noopener">aygaz.com.tr</a></td>
+      <td class="col-notes">Koç Holding iştiraki. LPG dağıtım lideri.</td>
+    </tr>
+    <tr class="firma-row" data-name="palet grup lojistik" data-origin="türkiye" data-services="palet, ambalaj, entegre lojistik" data-mode="karayolu">
+      <td class="col-id">75</td>
+      <td class="col-name"><strong>Palet Grup Lojistik</strong></td>
+      <td><span class="tag tag-tr">Türkiye</span></td>
+      <td>2001</td>
+      <td>İstanbul</td>
+      <td class="col-services">Palet, ambalaj, entegre lojistik</td>
+      <td>Karayolu</td>
+      <td>500+</td>
+      <td>Türkiye + bölge</td>
+      <td>₺500+ milyon</td>
+      <td><a href="https://www.paletgrup.com" target="_blank" rel="noopener">paletgrup.com</a></td>
+      <td class="col-notes">Palet ve tersine lojistikte uzman.</td>
+    </tr>
+    <tr class="firma-row" data-name="ege lojistik" data-origin="türkiye" data-services="karayolu, gümrük, depolama, ege bölgesi" data-mode="karayolu / deniz">
+      <td class="col-id">76</td>
+      <td class="col-name"><strong>Ege Lojistik</strong></td>
+      <td><span class="tag tag-tr">Türkiye</span></td>
+      <td>1995</td>
+      <td>İzmir</td>
+      <td class="col-services">Karayolu, gümrük, depolama, Ege bölgesi</td>
+      <td>Karayolu / Deniz</td>
+      <td>400+</td>
+      <td>Ege + Avrupa</td>
+      <td>₺400+ milyon</td>
+      <td><a href="https://www.egelojistik.com" target="_blank" rel="noopener">egelojistik.com</a></td>
+      <td class="col-notes">Ege bölgesi merkezli. UTİKAD üyesi.</td>
+    </tr>
+    <tr class="firma-row" data-name="mersin deniz ticaret" data-origin="türkiye" data-services="gemi acenteliği, gümrük, freight, akdeniz" data-mode="deniz / kara">
+      <td class="col-id">77</td>
+      <td class="col-name"><strong>Mersin Deniz Ticaret</strong></td>
+      <td><span class="tag tag-tr">Türkiye</span></td>
+      <td>1990</td>
+      <td>Mersin</td>
+      <td class="col-services">Gemi acenteliği, gümrük, freight, Akdeniz</td>
+      <td>Deniz / Kara</td>
+      <td>200+</td>
+      <td>Akdeniz + Ortadoğu</td>
+      <td>₺300+ milyon</td>
+      <td><a href="https://www.mdtl.com.tr" target="_blank" rel="noopener">mdtl.com.tr</a></td>
+      <td class="col-notes">Mersin bölgesinde köklü acentelik.</td>
+    </tr>
+    <tr class="firma-row" data-name="optima lojistik" data-origin="türkiye" data-services="karayolu, denizyolu, gümrük, freight forwarding" data-mode="multimodal">
+      <td class="col-id">78</td>
+      <td class="col-name"><strong>Optima Lojistik</strong></td>
+      <td><span class="tag tag-tr">Türkiye</span></td>
+      <td>2004</td>
+      <td>İstanbul</td>
+      <td class="col-services">Karayolu, denizyolu, gümrük, freight forwarding</td>
+      <td>Multimodal</td>
+      <td>300+</td>
+      <td>30+ ülke</td>
+      <td>₺400+ milyon</td>
+      <td><a href="https://www.optimalog.com.tr" target="_blank" rel="noopener">optimalog.com.tr</a></td>
+      <td class="col-notes">Freight forwarding&#x27;de büyüyen firma.</td>
+    </tr>
+    <tr class="firma-row" data-name="setur" data-origin="türkiye" data-services="marina işletmeciliği, deniz turizmi lojistiği" data-mode="deniz">
+      <td class="col-id">79</td>
+      <td class="col-name"><strong>Setur</strong></td>
+      <td><span class="tag tag-tr">Türkiye</span></td>
+      <td>1964</td>
+      <td>İstanbul</td>
+      <td class="col-services">Marina işletmeciliği, deniz turizmi lojistiği</td>
+      <td>Deniz</td>
+      <td>2.000+</td>
+      <td>Türkiye + bölge</td>
+      <td>₺2+ milyar</td>
+      <td><a href="https://www.setur.com.tr" target="_blank" rel="noopener">setur.com.tr</a></td>
+      <td class="col-notes">Koç Holding iştiraki. Marina ve deniz turizm lojistiği.</td>
+    </tr>
+    <tr class="firma-row" data-name="solmaz gümrükleme" data-origin="türkiye" data-services="gümrük müşavirliği, dış ticaret danışmanlığı, lojistik" data-mode="multimodal">
+      <td class="col-id">80</td>
+      <td class="col-name"><strong>Solmaz Gümrükleme</strong></td>
+      <td><span class="tag tag-tr">Türkiye</span></td>
+      <td>1937</td>
+      <td>İstanbul</td>
+      <td class="col-services">Gümrük müşavirliği, dış ticaret danışmanlığı, lojistik</td>
+      <td>Multimodal</td>
+      <td>1.500+</td>
+      <td>Türkiye + bölge</td>
+      <td>₺800+ milyon</td>
+      <td><a href="https://www.solmaz.com" target="_blank" rel="noopener">solmaz.com</a></td>
+      <td class="col-notes">Türkiye&#x27;nin en köklü gümrük müşavirliği firması.</td>
+    </tr>
+    <tr class="firma-row" data-name="kale lojistik" data-origin="türkiye" data-services="karayolu, gümrük, depolama, denizyolu" data-mode="multimodal">
+      <td class="col-id">81</td>
+      <td class="col-name"><strong>Kale Lojistik</strong></td>
+      <td><span class="tag tag-tr">Türkiye</span></td>
+      <td>1984</td>
+      <td>İstanbul</td>
+      <td class="col-services">Karayolu, gümrük, depolama, denizyolu</td>
+      <td>Multimodal</td>
+      <td>400+</td>
+      <td>25+ ülke</td>
+      <td>₺500+ milyon</td>
+      <td><a href="https://www.kalelojistik.com.tr" target="_blank" rel="noopener">kalelojistik.com.tr</a></td>
+      <td class="col-notes">UTİKAD üyesi. Uluslararası taşımacılıkta deneyimli.</td>
+    </tr>
+    <tr class="firma-row" data-name="metro kargo" data-origin="türkiye" data-services="otobüs kargo, şehirlerarası hızlı taşıma" data-mode="karayolu">
+      <td class="col-id">82</td>
+      <td class="col-name"><strong>Metro Kargo</strong></td>
+      <td><span class="tag tag-tr">Türkiye</span></td>
+      <td>2000</td>
+      <td>İstanbul</td>
+      <td class="col-services">Otobüs kargo, şehirlerarası hızlı taşıma</td>
+      <td>Karayolu</td>
+      <td>5.000+</td>
+      <td>Türkiye geneli</td>
+      <td>₺2+ milyar</td>
+      <td><a href="https://www.metrokargo.com.tr" target="_blank" rel="noopener">metrokargo.com.tr</a></td>
+      <td class="col-notes">Metro Turizm iştiraki. Şehirlerarası kargoda güçlü.</td>
+    </tr>
+    <tr class="firma-row" data-name="pamukkale kargo" data-origin="türkiye" data-services="otobüs kargo, şehirlerarası ekspres" data-mode="karayolu">
+      <td class="col-id">83</td>
+      <td class="col-name"><strong>Pamukkale Kargo</strong></td>
+      <td><span class="tag tag-tr">Türkiye</span></td>
+      <td>1962</td>
+      <td>Denizli</td>
+      <td class="col-services">Otobüs kargo, şehirlerarası ekspres</td>
+      <td>Karayolu</td>
+      <td>2.000+</td>
+      <td>Türkiye geneli</td>
+      <td>₺500+ milyon</td>
+      <td><a href="https://www.pamukkalekargo.com.tr" target="_blank" rel="noopener">pamukkalekargo.com.tr</a></td>
+      <td class="col-notes">Pamukkale Turizm iştiraki. Anadolu ağı güçlü.</td>
+    </tr>
+    <tr class="firma-row" data-name="ontime logistics" data-origin="türkiye" data-services="karayolu, denizyolu, havayolu, gümrük" data-mode="multimodal">
+      <td class="col-id">84</td>
+      <td class="col-name"><strong>Ontime Logistics</strong></td>
+      <td><span class="tag tag-tr">Türkiye</span></td>
+      <td>2003</td>
+      <td>İstanbul</td>
+      <td class="col-services">Karayolu, denizyolu, havayolu, gümrük</td>
+      <td>Multimodal</td>
+      <td>350+</td>
+      <td>30+ ülke</td>
+      <td>₺400+ milyon</td>
+      <td><a href="https://www.ontime.com.tr" target="_blank" rel="noopener">ontime.com.tr</a></td>
+      <td class="col-notes">UTİKAD üyesi. Zaman odaklı hizmet vaadi.</td>
+    </tr>
+    <tr class="firma-row" data-name="netlog kimya lojistiği" data-origin="türkiye" data-services="kimya, adr, tank, tehlikeli madde" data-mode="karayolu / deniz">
+      <td class="col-id">85</td>
+      <td class="col-name"><strong>Netlog Kimya Lojistiği</strong></td>
+      <td><span class="tag tag-tr">Türkiye</span></td>
+      <td>2005</td>
+      <td>Kocaeli</td>
+      <td class="col-services">Kimya, ADR, tank, tehlikeli madde</td>
+      <td>Karayolu / Deniz</td>
+      <td>800+</td>
+      <td>Avrupa + Ortadoğu</td>
+      <td>₺2+ milyar</td>
+      <td><a href="https://www.netloglojistik.com" target="_blank" rel="noopener">netloglojistik.com</a></td>
+      <td class="col-notes">Netlog Grubu iştiraki. Kimya lojistiği.</td>
+    </tr>
+    <tr class="firma-row" data-name="anadolu lojistik" data-origin="türkiye" data-services="karayolu, savunma sanayi lojistiği" data-mode="karayolu">
+      <td class="col-id">86</td>
+      <td class="col-name"><strong>Anadolu Lojistik</strong></td>
+      <td><span class="tag tag-tr">Türkiye</span></td>
+      <td>1998</td>
+      <td>Ankara</td>
+      <td class="col-services">Karayolu, savunma sanayi lojistiği</td>
+      <td>Karayolu</td>
+      <td>300+</td>
+      <td>Türkiye + BDT</td>
+      <td>₺400+ milyon</td>
+      <td><a href="https://www.anadolulojistik.com" target="_blank" rel="noopener">anadolulojistik.com</a></td>
+      <td class="col-notes">Savunma ve endüstriyel lojistik.</td>
+    </tr>
+    <tr class="firma-row" data-name="standart profil lojistik" data-origin="türkiye" data-services="otomotiv yan sanayi lojistiği, ihracat" data-mode="karayolu / deniz">
+      <td class="col-id">87</td>
+      <td class="col-name"><strong>Standart Profil Lojistik</strong></td>
+      <td><span class="tag tag-tr">Türkiye</span></td>
+      <td>1977</td>
+      <td>İstanbul</td>
+      <td class="col-services">Otomotiv yan sanayi lojistiği, ihracat</td>
+      <td>Karayolu / Deniz</td>
+      <td>1.500+</td>
+      <td>25+ ülke</td>
+      <td>₺15+ milyar</td>
+      <td><a href="https://www.standartprofil.com" target="_blank" rel="noopener">standartprofil.com</a></td>
+      <td class="col-notes">Otomotiv yan sanayi ihracat lojistiği.</td>
+    </tr>
+    <tr class="firma-row" data-name="turkuaz global lojistik" data-origin="türkiye" data-services="karayolu, gümrük, freight forwarding" data-mode="multimodal">
+      <td class="col-id">88</td>
+      <td class="col-name"><strong>Turkuaz Global Lojistik</strong></td>
+      <td><span class="tag tag-tr">Türkiye</span></td>
+      <td>2004</td>
+      <td>İstanbul</td>
+      <td class="col-services">Karayolu, gümrük, freight forwarding</td>
+      <td>Multimodal</td>
+      <td>250+</td>
+      <td>20+ ülke</td>
+      <td>₺300+ milyon</td>
+      <td><a href="https://www.turkuazglobal.com" target="_blank" rel="noopener">turkuazglobal.com</a></td>
+      <td class="col-notes">Freight forwarding ve uluslararası taşıma.</td>
+    </tr>
+    <tr class="firma-row" data-name="gündoğdu lojistik" data-origin="türkiye" data-services="karayolu, gümrük, depolama" data-mode="karayolu">
+      <td class="col-id">89</td>
+      <td class="col-name"><strong>Gündoğdu Lojistik</strong></td>
+      <td><span class="tag tag-tr">Türkiye</span></td>
+      <td>1998</td>
+      <td>Ankara</td>
+      <td class="col-services">Karayolu, gümrük, depolama</td>
+      <td>Karayolu</td>
+      <td>300+</td>
+      <td>Türkiye + BDT</td>
+      <td>₺400+ milyon</td>
+      <td><a href="https://www.gundogdulojistik.com" target="_blank" rel="noopener">gundogdulojistik.com</a></td>
+      <td class="col-notes">İç Anadolu bölgesi lojistiğinde güçlü.</td>
+    </tr>
+    <tr class="firma-row" data-name="genç line lojistik" data-origin="türkiye" data-services="karayolu, gümrük, denizyolu" data-mode="multimodal">
+      <td class="col-id">90</td>
+      <td class="col-name"><strong>Genç Line Lojistik</strong></td>
+      <td><span class="tag tag-tr">Türkiye</span></td>
+      <td>1990</td>
+      <td>İstanbul</td>
+      <td class="col-services">Karayolu, gümrük, denizyolu</td>
+      <td>Multimodal</td>
+      <td>300+</td>
+      <td>30+ ülke</td>
+      <td>₺400+ milyon</td>
+      <td><a href="https://www.gencline.com.tr" target="_blank" rel="noopener">gencline.com.tr</a></td>
+      <td class="col-notes">UTİKAD üyesi. Uluslararası nakliyat.</td>
+    </tr>
+    <tr class="firma-row" data-name="efe uluslararası lojistik" data-origin="türkiye" data-services="karayolu, denizyolu, havayolu, gümrük" data-mode="multimodal">
+      <td class="col-id">91</td>
+      <td class="col-name"><strong>Efe Uluslararası Lojistik</strong></td>
+      <td><span class="tag tag-tr">Türkiye</span></td>
+      <td>1994</td>
+      <td>İstanbul</td>
+      <td class="col-services">Karayolu, denizyolu, havayolu, gümrük</td>
+      <td>Multimodal</td>
+      <td>250+</td>
+      <td>25+ ülke</td>
+      <td>₺300+ milyon</td>
+      <td><a href="https://www.efelojistik.com.tr" target="_blank" rel="noopener">efelojistik.com.tr</a></td>
+      <td class="col-notes">Freight forwarding ve entegre lojistik.</td>
+    </tr>
+    <tr class="firma-row" data-name="marintrans denizcilik" data-origin="türkiye" data-services="gemi acenteliği, denizyolu freight, liman" data-mode="deniz">
+      <td class="col-id">92</td>
+      <td class="col-name"><strong>Marintrans Denizcilik</strong></td>
+      <td><span class="tag tag-tr">Türkiye</span></td>
+      <td>1990</td>
+      <td>İstanbul</td>
+      <td class="col-services">Gemi acenteliği, denizyolu freight, liman</td>
+      <td>Deniz</td>
+      <td>200+</td>
+      <td>40+ ülke</td>
+      <td>₺500+ milyon</td>
+      <td><a href="https://www.marintrans.com.tr" target="_blank" rel="noopener">marintrans.com.tr</a></td>
+      <td class="col-notes">Denizyolu freight forwarding uzmanı.</td>
+    </tr>
+    <tr class="firma-row" data-name="trakya lojistik" data-origin="türkiye" data-services="karayolu, gümrük, sınır kapısı hizmetleri" data-mode="karayolu">
+      <td class="col-id">93</td>
+      <td class="col-name"><strong>Trakya Lojistik</strong></td>
+      <td><span class="tag tag-tr">Türkiye</span></td>
+      <td>2002</td>
+      <td>Edirne</td>
+      <td class="col-services">Karayolu, gümrük, sınır kapısı hizmetleri</td>
+      <td>Karayolu</td>
+      <td>200+</td>
+      <td>Avrupa</td>
+      <td>₺200+ milyon</td>
+      <td><a href="https://www.trakyalojistik.com.tr" target="_blank" rel="noopener">trakyalojistik.com.tr</a></td>
+      <td class="col-notes">Kapıkule sınır kapısı bölgesinde uzman.</td>
+    </tr>
+    <tr class="firma-row" data-name="nak lojistik" data-origin="türkiye" data-services="karayolu, endüstriyel taşıma, depolama" data-mode="karayolu">
+      <td class="col-id">94</td>
+      <td class="col-name"><strong>Nak Lojistik</strong></td>
+      <td><span class="tag tag-tr">Türkiye</span></td>
+      <td>2005</td>
+      <td>Kocaeli</td>
+      <td class="col-services">Karayolu, endüstriyel taşıma, depolama</td>
+      <td>Karayolu</td>
+      <td>500+</td>
+      <td>Türkiye + bölge</td>
+      <td>₺500+ milyon</td>
+      <td><a href="https://www.naklojistik.com" target="_blank" rel="noopener">naklojistik.com</a></td>
+      <td class="col-notes">Endüstriyel ve fabrika lojistiği.</td>
+    </tr>
+    <tr class="firma-row" data-name="ekol otomotiv lojistik" data-origin="türkiye" data-services="otomotiv bitmiş araç, yedek parça, ihracat" data-mode="kara / deniz">
+      <td class="col-id">95</td>
+      <td class="col-name"><strong>Ekol Otomotiv Lojistik</strong></td>
+      <td><span class="tag tag-tr">Türkiye</span></td>
+      <td>1995</td>
+      <td>İstanbul</td>
+      <td class="col-services">Otomotiv bitmiş araç, yedek parça, ihracat</td>
+      <td>Kara / Deniz</td>
+      <td>1.000+</td>
+      <td>40+ ülke</td>
+      <td>₺2+ milyar</td>
+      <td><a href="https://www.ekol.com" target="_blank" rel="noopener">ekol.com</a></td>
+      <td class="col-notes">Ekol Grubu iştiraki. Otomotiv sektörü uzmanı.</td>
+    </tr>
+    <tr class="firma-row" data-name="reysaş gyo" data-origin="türkiye" data-services="lojistik gayrimenkul, depo, soğuk hava" data-mode="depo">
+      <td class="col-id">96</td>
+      <td class="col-name"><strong>Reysaş GYO</strong></td>
+      <td><span class="tag tag-tr">Türkiye</span></td>
+      <td>2010</td>
+      <td>İstanbul</td>
+      <td class="col-services">Lojistik gayrimenkul, depo, soğuk hava</td>
+      <td>Depo</td>
+      <td>200+</td>
+      <td>Türkiye geneli</td>
+      <td>₺3+ milyar</td>
+      <td><a href="https://www.reysasgyo.com" target="_blank" rel="noopener">reysasgyo.com</a></td>
+      <td class="col-notes">Reysaş Grubu. Lojistik gayrimenkul yatırım ortaklığı.</td>
+    </tr>
+    <tr class="firma-row" data-name="botaş" data-origin="türkiye" data-services="boru hattı, doğalgaz, lng, enerji lojistiği" data-mode="boru / deniz">
+      <td class="col-id">97</td>
+      <td class="col-name"><strong>BOTAŞ</strong></td>
+      <td><span class="tag tag-tr">Türkiye</span></td>
+      <td>1974</td>
+      <td>Ankara</td>
+      <td class="col-services">Boru hattı, doğalgaz, LNG, enerji lojistiği</td>
+      <td>Boru / Deniz</td>
+      <td>3.000+</td>
+      <td>Türkiye + bölge</td>
+      <td>Devlet</td>
+      <td><a href="https://www.botas.gov.tr" target="_blank" rel="noopener">botas.gov.tr</a></td>
+      <td class="col-notes">Türkiye&#x27;nin doğalgaz iletim ve enerji lojistiği devi.</td>
+    </tr>
+    <tr class="firma-row" data-name="yıldız holding lojistik" data-origin="türkiye" data-services="fmcg dağıtım, gıda soğuk zincir, ihracat" data-mode="karayolu">
+      <td class="col-id">98</td>
+      <td class="col-name"><strong>Yıldız Holding Lojistik</strong></td>
+      <td><span class="tag tag-tr">Türkiye</span></td>
+      <td>1944</td>
+      <td>İstanbul</td>
+      <td class="col-services">FMCG dağıtım, gıda soğuk zincir, ihracat</td>
+      <td>Karayolu</td>
+      <td>8.000+</td>
+      <td>130+ ülke</td>
+      <td>₺10+ milyar</td>
+      <td><a href="https://www.yildizholding.com.tr" target="_blank" rel="noopener">yildizholding.com.tr</a></td>
+      <td class="col-notes">Ülker/Yıldız Holding lojistiği. FMCG ve gıda için ideal.</td>
+    </tr>
+    <tr class="firma-row" data-name="arkas denizcilik" data-origin="türkiye" data-services="denizyolu, tanker, kuru yük, liman" data-mode="deniz">
+      <td class="col-id">99</td>
+      <td class="col-name"><strong>Arkas Denizcilik</strong></td>
+      <td><span class="tag tag-tr">Türkiye</span></td>
+      <td>1902</td>
+      <td>İzmir</td>
+      <td class="col-services">Denizyolu, tanker, kuru yük, liman</td>
+      <td>Deniz</td>
+      <td>2.500+</td>
+      <td>Global ağ</td>
+      <td>₺15+ milyar</td>
+      <td><a href="https://www.arkas.com.tr" target="_blank" rel="noopener">arkas.com.tr</a></td>
+      <td class="col-notes">Türkiye&#x27;nin en büyük özel denizcilik grubu.</td>
+    </tr>
+    <tr class="firma-row" data-name="kıta lojistik" data-origin="türkiye" data-services="karayolu, denizyolu, gümrük, freight" data-mode="multimodal">
+      <td class="col-id">100</td>
+      <td class="col-name"><strong>Kıta Lojistik</strong></td>
+      <td><span class="tag tag-tr">Türkiye</span></td>
+      <td>2007</td>
+      <td>İstanbul</td>
+      <td class="col-services">Karayolu, denizyolu, gümrük, freight</td>
+      <td>Multimodal</td>
+      <td>200+</td>
+      <td>30+ ülke</td>
+      <td>₺400+ milyon</td>
+      <td><a href="https://www.kitalojistik.com" target="_blank" rel="noopener">kitalojistik.com</a></td>
+      <td class="col-notes">UTİKAD üyesi. Freight forwarding ve entegre çözüm.</td>
+    </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="kategoriler">
+    <div class="section-head">
+      <div class="section-kicker">02 — Sınıflandırma</div>
+      <h2 class="section-title">Firma Kategorileri</h2>
+      <p class="section-desc">İlgi alanınıza uygun şirketleri hızla bulmak için menşe, hizmet türü ve ölçek bazında gruplandırma.</p>
+    </div>
+    <p class="reh-intro-title">FİRMA KATEGORİLERİ VE SINIFLANDIRMA</p><p class="reh-intro-sub">Öğrenciler için hızlı referans — Firma türüne göre ilgi alanına uygun şirketleri bulun</p><h3 class="kat-section">MENŞE BAZINDA SINIFLANDIRMA</h3><div class="table-wrap"><table class="kat-table"><thead><tr><th>Kategori</th><th>Firma Sayısı</th><th>Örnek Firmalar</th></tr></thead><tbody><tr><td>Türk Firmalar</td><td>75</td><td>Netlog, Ekol, Borusan, Mars, Omsan, Horoz, Arkas, Barsan, Reysaş, Aras Kargo, Yurtiçi Kargo, Turkish Cargo...</td></tr><tr><td>Global Firmalar (TR ofisli)</td><td>25</td><td>DHL, FedEx, UPS, Kuehne+Nagel, DSV, DB Schenker, Maersk, MSC, CEVA, Geodis, Hellmann, Rhenus, Nippon Express, Kerry, PSA BDP, Toyota Boshoku...</td></tr></tbody></table></div><h3 class="kat-section">HİZMET TÜRÜ / UZMANLIK ALANINA GÖRE</h3><div class="table-wrap"><table class="kat-table"><thead><tr><th>Kategori</th><th>Firma #</th><th>Örnek Firmalar</th><th>Uygun İlgi Alanı</th></tr></thead><tbody><tr><td>Kargo &amp; Ekspres</td><td>15</td><td>Aras Kargo, Yurtiçi, MNG, PTT, Sürat, DHL, FedEx, UPS, Trendyol Express, Hepsijet, Getir, Metro Kargo, Pamukkale Kargo, Ekspres Kurye</td><td>Son mil teslimat, e-ticaret lojistiği, dağıtım yönetimi</td></tr><tr><td>Freight Forwarding</td><td>25</td><td>Barsan, Mars, Sertrans, Balnak, Batı, Kuehne+Nagel, DSV, DB Schenker, Geodis, Hellmann, Rhenus, Kerry, Talay, Kale, Fevzi Gandur...</td><td>Uluslararası taşımacılık, gümrük, dış ticaret</td></tr><tr><td>3PL / Kontrat Lojistiği</td><td>15</td><td>Ekol, Borusan, Netlog, CEVA, Omsan, Kalyon, Nak Lojistik, LOGIN, Optima, Zet</td><td>Tedarik zinciri, depo yönetimi, entegre çözümler</td></tr><tr><td>Denizyolu &amp; Armatör</td><td>10</td><td>Arkas Line, Turkon, Maersk, MSC, Marintrans, Arkas Denizcilik, Mersin Deniz Ticaret</td><td>Denizcilik, konteyner taşımacılığı, gemi acenteliği</td></tr><tr><td>Havayolu Kargo &amp; Yer Hizmetleri</td><td>7</td><td>Turkish Cargo, TAV, Havaş, Çelebi, ULS Airlines, MyCargo, DHL Aviation</td><td>Havacılık lojistiği, kargo terminali, uçak elleçleme</td></tr><tr><td>Liman &amp; Terminal</td><td>5</td><td>MIP (Mersin), Yılport, Global Ports Holding, Borusan Liman, Ekinciler</td><td>Liman işletmeciliği, terminal yönetimi</td></tr><tr><td>Kimya &amp; Tehlikeli Madde</td><td>5</td><td>Alışan, PSA BDP, Netlog Kimya, Anadolu Kimya, CEVA-BDP</td><td>ADR taşımacılık, tank lojistiği, kimya SC</td></tr><tr><td>Otomotiv Lojistiği</td><td>8</td><td>Omsan, Gefco, Ford Otosan, Tofaş, Doğuş, Toyota Boshoku, Ekol Otomotiv, Standart Profil</td><td>OEM tedarik zinciri, bitmiş araç, yedek parça</td></tr><tr><td>Enerji &amp; Akaryakıt Lojistiği</td><td>5</td><td>Petrol Ofisi, Opet, Aygaz, BOTAŞ, Kalyon</td><td>Tanker, boru hattı, enerji SC</td></tr><tr><td>FMCG &amp; Perakende Lojistiği</td><td>5</td><td>Migros, Anadolu Grubu, Yıldız Holding, Horoz, Fasdat</td><td>Soğuk zincir, market dağıtımı, gıda lojistiği</td></tr></tbody></table></div><h3 class="kat-section">ÖLÇEK / BÜYÜKLÜK BAZINDA</h3><div class="table-wrap"><table class="kat-table"><thead><tr><th>Kategori</th><th>Kriter</th><th>Örnek Firmalar</th><th>Kariyer Değeri</th></tr></thead><tbody><tr><td>Global Devler</td><td>10.000+ çalışan</td><td>DHL, FedEx, UPS, Maersk, MSC, DSV, K+N, CEVA, Geodis, Nippon Express</td><td>Global kariyer, rotasyon programları, yüksek maaş</td></tr><tr><td>Türk Liderler</td><td>₺5+ milyar ciro</td><td>Netlog, Ekol, Borusan, Mars, Omsan, Arkas, Barsan, Horoz, Aras, Yurtiçi</td><td>Sektör liderliği, güçlü eğitim, staj imkanı</td></tr><tr><td>Orta Ölçekli</td><td>₺500M - ₺5 milyar</td><td>Sertrans, Balnak, Batı, Reysaş, Alışan, Talay, Fevzi Gandur, Kalyon, LOGIN</td><td>Hızlı büyüme, geniş sorumluluk, kariyer ivmesi</td></tr><tr><td>Küçük &amp; Girişim</td><td>&lt; ₺500M / Startup</td><td>Netlift, Trendtaşımacılık, Kolay Lojistik, yeni kurulan firmalar</td><td>İnovasyon, esnek yapı, hızlı öğrenme</td></tr></tbody></table></div>
+  </section>
+
+  <section id="rehber">
+    <div class="section-head">
+      <div class="section-kicker">03 — Kariyer & Staj</div>
+      <h2 class="section-title">Öğrenci Rehberi</h2>
+      <p class="section-desc">Firma seçiminden mülakat hazırlığına kadar tüm ipuçları.</p>
+    </div>
+    <p class="reh-intro-title">LOJİSTİK ÖĞRENCİLERİ İÇİN KARİYER &amp; STAJ REHBERİ</p><p class="reh-intro-sub">Firma seçiminden mülakat hazırlığına kadar tüm ipuçları</p><h3 class="reh-section">1. DOĞRU FİRMAYI NASIL SEÇERSİN?</h3><div class="table-wrap"><table class="reh-table"><thead><tr><th>Kriter</th><th>Değerlendirme</th></tr></thead><tbody><tr><td>İlgi Alanın</td><td>Denizyolu mu, havayolu mu, e-ticaret lojistiği mi? Kendi tutkunu belirle. Örn: Havacılık seven → Turkish Cargo/TAV/Havaş; Denizcilik seven → Arkas/Maersk/MSC</td></tr><tr><td>Firma Ölçeği</td><td>Global şirket (DHL, K+N) → sistematik eğitim + global rotasyon; Türk firma (Netlog, Ekol) → daha erken sorumluluk + hızlı yükselme</td></tr><tr><td>Sektör Uzmanlığı</td><td>Otomotiv seviyorsan Ford Otosan/Tofaş/Omsan; Kimya için Alışan/PSA BDP; FMCG için Migros/Yıldız Holding</td></tr><tr><td>Lokasyon</td><td>İstanbul (çoğu HQ); Kocaeli/Bursa (endüstriyel); İzmir (denizyolu); Mersin (liman); Ankara (kamu/enerji)</td></tr><tr><td>Kurumsal Kültür</td><td>LinkedIn, Kariyer.net yorumlarını incele; mevcut çalışanlarla iletişime geç; şirketin sosyal medya paylaşımlarını takip et</td></tr><tr><td>Staj/Yeni Mezun Programı</td><td>DHL &#x27;GET Program&#x27;, Ekol &#x27;Ekol Akademi&#x27;, Borusan &#x27;Yönetici Adayı&#x27;, Koç Holding &#x27;K-MPT&#x27;, TAV &#x27;Yeni Mezun&#x27; programları önerilir</td></tr></tbody></table></div><h3 class="reh-section">2. LOJİSTİK KARİYER YOLLARI</h3><div class="table-wrap"><table class="reh-table"><thead><tr><th>Kariyer Yolu</th><th>Neler Yaparsın? / Örnek Pozisyonlar</th></tr></thead><tbody><tr><td>Operasyon Uzmanı</td><td>Günlük sevkiyat, araç planlama, sürücü koordinasyonu. Pozisyonlar: Operasyon Uzmanı, Trafik Sorumlusu, Filo Yönetimi</td></tr><tr><td>Freight Forwarder</td><td>Uluslararası taşıma organizasyonu, gümrük, INCOTERMS. Pozisyonlar: Deniz/Hava Kargo Uzmanı, Import/Export Uzmanı</td></tr><tr><td>Tedarik Zinciri Analisti</td><td>Veri analizi, stok optimizasyonu, KPI takibi. Pozisyonlar: SC Analyst, Demand Planner, S&amp;OP Uzmanı</td></tr><tr><td>Depo/WMS Yöneticisi</td><td>Depo operasyonları, WMS sistemleri, envanter. Pozisyonlar: Warehouse Manager, WMS Uzmanı, İnbound/Outbound Sorumlusu</td></tr><tr><td>Müşteri Hizmetleri (CS)</td><td>Müşteri iletişimi, sipariş takibi, sorun çözme. Pozisyonlar: Customer Service, Key Account Manager</td></tr><tr><td>Dijital Lojistik / TMS</td><td>Yazılım, TMS/WMS, veri, otomasyon. Pozisyonlar: TMS Analyst, Digital Logistics Specialist, Data Analyst</td></tr><tr><td>Satış / İş Geliştirme</td><td>Yeni müşteri kazanma, teklif hazırlama, fiyatlandırma. Pozisyonlar: Sales, BD Manager, Pricing Analyst</td></tr><tr><td>Denizcilik / Gemicilik</td><td>Gemi acenteliği, konteyner, chartering. Pozisyonlar: Ship Agent, Chartering Broker, Line Manager</td></tr></tbody></table></div><h3 class="reh-section">3. STAJ VE İŞ BAŞVURUSU İPUÇLARI</h3><div class="table-wrap"><table class="reh-table"><thead><tr><th>İpucu</th><th>Detay</th></tr></thead><tbody><tr><td>Erken Başla</td><td>Yaz stajı için Şubat-Mart döneminde başvur. Bazı firmalar (DHL, K+N) 6 ay önceden alım yapar.</td></tr><tr><td>CV&#x27;ni Özelleştir</td><td>Her firmaya özel CV hazırla. Excel, SAP, WMS bilgini, INCOTERMS bilgini vurgula.</td></tr><tr><td>Sektörel STK&#x27;lara Katıl</td><td>UTİKAD, UND, LODER gibi derneklerin öğrenci etkinliklerine katıl. Networking en değerli varlıktır.</td></tr><tr><td>Sertifika Al</td><td>İngilizce (min. B2), MS Excel, SAP MM/SD, IATA Kargo, ADR temel, INCOTERMS 2020 sertifikaları</td></tr><tr><td>LinkedIn Aktif Ol</td><td>Firma çalışanlarını takip et, sektörel içerik paylaş, alan uzmanlarıyla bağlantı kur.</td></tr><tr><td>Fuar &amp; Etkinlik</td><td>Logitrans, Transist gibi lojistik fuarlarına katıl. Firma standlarını ziyaret et.</td></tr><tr><td>Yabancı Dil</td><td>İngilizce zorunlu. Almanca (DB Schenker, Rhenus), Rusça (BDT rotaları), İspanyolca da avantaj sağlar.</td></tr><tr><td>Mülakat Hazırlığı</td><td>Sektörel güncel gelişmeleri (Kızıldeniz krizi, konteyner fiyatları, yeşil lojistik) bil. Firmanın son projelerini araştır.</td></tr></tbody></table></div><h3 class="reh-section">🔗 4. YARARLI KAYNAKLAR &amp; DERNEKLER</h3><div class="table-wrap"><table class="reh-table"><thead><tr><th>Kaynak</th><th>Bağlantı / Açıklama</th></tr></thead><tbody><tr><td>UTİKAD</td><td>https://www.utikad.org.tr - Uluslararası Taşımacılık ve Lojistik Hizmet Üretenleri Derneği</td></tr><tr><td>UND</td><td>https://www.und.org.tr - Uluslararası Nakliyeciler Derneği</td></tr><tr><td>LODER</td><td>https://www.loder.org.tr - Lojistik Derneği</td></tr><tr><td>TOBB Lojistik Meclisi</td><td>https://www.tobb.org.tr - Sektör raporları ve strateji belgeleri</td></tr><tr><td>Fortune 500 Türkiye</td><td>https://www.fortuneturkey.com/fortune500 - Yıllık firma sıralamaları</td></tr><tr><td>Lojiport</td><td>https://www.lojiport.com - Sektör haberleri</td></tr><tr><td>Transmedya</td><td>https://www.transmedya.com - Lojistik ve taşımacılık haber portalı</td></tr><tr><td>Kariyer Portalları</td><td>kariyer.net, LinkedIn, Yenibiris.com - İş ilanları için düzenli takip</td></tr></tbody></table></div><p class="reh-outro">BAŞARILAR! Kariyerinde ilerlerken hep öğrenmeye açık ol, network kur, sektörü yakından takip et.</p>
+  </section>
+
+</main>
+
+<footer>
+  Türkiye'nin En İyi 100 Lojistik Firması — Lojistik Öğrencileri için Kapsamlı Rehber <span class="amber">•</span> 2025
+</footer>
+
+<button id="backtotop" title="Başa dön">↑</button>
+
+<script>
+  const searchInput = document.getElementById('searchInput');
+  const originFilter = document.getElementById('originFilter');
+  const rows = Array.from(document.querySelectorAll('#firmaTbody tr'));
+  const resultCount = document.getElementById('resultCount');
+
+  function applyFilters(){
+    const q = searchInput.value.trim().toLowerCase();
+    const origin = originFilter.value;
+    let visible = 0;
+    rows.forEach(row => {
+      const name = row.dataset.name || '';
+      const services = row.dataset.services || '';
+      const mode = row.dataset.mode || '';
+      const rowOrigin = row.dataset.origin || '';
+      const matchesQuery = !q || name.includes(q) || services.includes(q) || mode.includes(q);
+      const matchesOrigin = !origin || (origin === 'türkiye' ? rowOrigin.includes('türkiye') : !rowOrigin.includes('türkiye'));
+      const show = matchesQuery && matchesOrigin;
+      row.style.display = show ? '' : 'none';
+      if(show) visible++;
+    });
+    resultCount.textContent = visible;
+  }
+
+  searchInput.addEventListener('input', applyFilters);
+  originFilter.addEventListener('change', applyFilters);
+
+  const backBtn = document.getElementById('backtotop');
+  window.addEventListener('scroll', () => {
+    backBtn.style.display = window.scrollY > 600 ? 'block' : 'none';
+  });
+  backBtn.addEventListener('click', () => window.scrollTo({top:0, behavior:'smooth'}));
+</script>
+
+</body>
+</html>
